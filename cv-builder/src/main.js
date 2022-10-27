@@ -11,6 +11,7 @@ function MainApp() {
 
       <section className='section1'>
         <h1 className='header'>Header h1</h1>
+        
       </section>
     </div>
   );

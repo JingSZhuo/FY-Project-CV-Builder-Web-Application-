@@ -16,3 +16,18 @@
   margin-top: 50px;
   font-size: 20px;
 }
+
+/*CUSTOMISABLE PAGE CSS*/
+
+.draggable {
+  position: absolute ;
+  width: 10%;
+  min-height: 6.5em;
+  margin: 1rem 0 0 1rem;
+  background-color: #29e;
+  color: white;
+  border-radius: 0.75em;
+  padding: 4%;
+  touch-action: none;
+  user-select: none;
+}
