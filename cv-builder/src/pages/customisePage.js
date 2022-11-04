@@ -6,13 +6,16 @@ import '../reset.css';
 import interact from 'interactjs'; 
 
 /*FIREBASE*/
-import { getDatabase, ref, set } from 'firebase/database';
+import { get, getDatabase, onValue, ref, set, update } from 'firebase/database';
 import db from '../firebase';
+import { useEffect, useState } from 'react';
 
 
 function CustomiseApp () {
 
-    const position = { x: 0, y: 0 }
+    //STATES
+
+    const [data, setData] = useState([])
 
     // target elements with the "draggable" class
     interact('.draggable')
@@ -43,8 +46,10 @@ function CustomiseApp () {
                 (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
                         Math.pow(event.pageY - event.y0, 2) | 0))
                 .toFixed(2) + 'px')
-            }
 
+            GetClass(db)  //Update every move
+
+            }
         }
     })
 
@@ -66,16 +71,58 @@ function CustomiseApp () {
     // this function is used later in the resizing and gesture demos
     window.dragMoveListener = dragMoveListener
 
+    function GetClass (db) {
+        let x = document.getElementsByClassName("draggable").length
+        console.log("lenght: ",x)
+        const object = {}
+        for (let index = 0; index < x; index++) {
+            let y = document.getElementsByClassName("draggable")[index].outerHTML
+            object[index] =  y
+        }
+        //console.log(object)
+
+        let z = getDatabase(db)
+        update(ref(z, 'user/object'), object)
+
+        return object
+    }
+
     function testFunction(db) {
+
         console.log("function success")
+
         const data = getDatabase(db)
         set(ref( data, 'user/'), {
             username: "lol",
             outerDiv: "some...div...changed",
             empty: "" ,
+            object : {
+                empty: "...empty...",
+                0: "changed...",
+                1: "xd", 
+                2: "testing...",
+            },
         });
     }
 
+    useEffect(() => {
+        function readData (db) {
+            const data = getDatabase(db)
+            let reference = ref(data, 'user/object')
+    
+            onValue(reference, (snapshot) => {
+                const B = JSON.stringify(snapshot.val())
+                const A = JSON.parse(B)
+                console.log(A)
+                
+                setData(snapshot.val())
+            }, 
+            {onlyOnce: true})
+        }
+        readData(db)
+    }, [])
+
+    console.log("Data: ", data)
 
     return(
         <div className='main'>
@@ -88,7 +135,17 @@ function CustomiseApp () {
                 <div class="draggable">
                     <p> ...</p>
                 </div>
-                <button onClick={() => { testFunction(db)}}>Click</button>
+
+                {/* {data.map((data) => {
+                    return(
+                        
+                        <div> {data.empty}</div>
+                    )
+                })} */}
+
+
+                <button onClick={() => { testFunction(db)}}>Post</button>
+                <button onClick={() => { GetClass(db)}}>Change</button>
 
             </section>
 
