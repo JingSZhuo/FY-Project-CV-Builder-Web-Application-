@@ -97,15 +97,14 @@ function CustomiseApp () {
             outerDiv: "some...div...changed",
             empty: "" ,
             object : {
-                empty: "...empty...",
-                0: "changed...",
-                1: "xd", 
-                2: "testing...",
+                0: "reset...",
+                1: "reset...", 
+                2: "reset...",
             },
         });
     }
 
-    useEffect(() => {
+    useEffect(() => {                               //When page is initially loaded/refreshed
         function readData (db) {
             const data = getDatabase(db)
             let reference = ref(data, 'user/object')
@@ -114,38 +113,55 @@ function CustomiseApp () {
                 const B = JSON.stringify(snapshot.val())
                 const A = JSON.parse(B)
                 console.log(A)
-                
-                setData(snapshot.val())
-            }, 
+                setData(A)
+            } , 
             {onlyOnce: true})
         }
         readData(db)
     }, [])
 
-    console.log("Data: ", data)
+    let i = 0
+    console.log("Data: ", data[i])
 
+    function createElement() {
+        const divv = document.createElement("div")
+
+        const parent = document.getElementById('maindiv')
+        parent.appendChild(divv)
+        divv.outerHTML = data[i]
+
+        console.log(divv.outerHTML)
+
+    }
+
+    
     return(
         <div className='main'>
-            <section className='section1'>
+            <section id='maindiv' className='section1'>
                 <h1>Customise page</h1>
 
-                <div  class="draggable">
+                {/* <div  class="draggable">
                     <p> ...</p>
                 </div>
                 <div class="draggable">
                     <p> ...</p>
-                </div>
+                </div> */}
 
-                {/* {data.map((data) => {
-                    return(
-                        
-                        <div> {data.empty}</div>
-                    )
-                })} */}
+                {data[i]}
 
+                {
 
-                <button onClick={() => { testFunction(db)}}>Post</button>
+                }
+{/* 
+                {
+                    data.map((data) => {
+                        {data.empty}
+                    })
+                } */}
+
+                {/* <button onClick={() => { testFunction(db)}}>Reset</button> */}
                 <button onClick={() => { GetClass(db)}}>Change</button>
+                <button onClick={() => { createElement()}}>Load</button>
 
             </section>
 

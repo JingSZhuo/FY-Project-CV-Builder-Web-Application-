@@ -9,7 +9,7 @@ function MainApp() {
       </nav>
 
 
-      <section className='section1'>
+      <section id='canvas' className='section1'>
         <h1 className='header'>Header h1</h1>
         
       </section>
