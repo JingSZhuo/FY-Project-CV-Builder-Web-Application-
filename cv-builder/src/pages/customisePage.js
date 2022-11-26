@@ -15,11 +15,13 @@ function CustomiseApp () {
 
     //STATES + USEEFFECT
 
+    //UseStates default values
     const [data, setData] = useState([])
     const [count, setCount] = useState(0)
+    //const [intial, setInitial] = useState(0)
 
     
-    useEffect(() => {                               //When page is initially loaded/refreshed
+    useEffect(() => {                               //When page is initially loaded/refreshed 
         function readData (db) {
             const data = getDatabase(db)
             let reference = ref(data, 'user/object')
@@ -29,17 +31,19 @@ function CustomiseApp () {
                 const A = JSON.parse(B)
                 console.log("A:",A)
                 setData(A)         //Update state data
-                setCount(A.length)
+                setCount(A.length) 
+                //setInitial(1)
             } , 
             {onlyOnce: true})
         }
         readData(db)
 
-        
-        loadElements()
-    }, [count]) //count dependency to render the page to load elements
+        //loadElements()
+    }, []) //count dependency to render the page to load elements
 
     //JavaScript Library for drag and resize function
+
+    /******************************************JAVASCRIPT LIBRARIES*******************************************/
 
     interact('.resize-drag')
         .resizable({
@@ -112,15 +116,17 @@ function CustomiseApp () {
             // update the posiion attributes
             target.setAttribute('data-x', x)
             target.setAttribute('data-y', y)
+            target.style.color = "white"
 
-            UpdateRealTimeDB(db)        //Update the DB everytime a action is performed
+            //UpdateRealTimeDB(db)        //Update the DB everytime a action is performed
         }
         
     // this function is used later in the resizing and gesture demos
     window.dragMoveListener = dragMoveListener
 
+    
+    /******************************************JAVASCRIPT LIBRARIES*******************************************/
 
-        
 
     function UpdateRealTimeDB (db) {                //Call this everytime to update the Database
         let x = document.getElementsByClassName("resize-drag").length
@@ -129,6 +135,7 @@ function CustomiseApp () {
         for (let index = 0; index < x; index++) {
             let y = document.getElementsByClassName("resize-drag")[index].outerHTML     
             object[index] = y                                   //objectName["property name"] = property value
+            if ( object[index] == null ) {console.log("null found")}
         }
 
         //update database
@@ -140,6 +147,7 @@ function CustomiseApp () {
 
     function loadElements() {       //When called, it will load data from database via the data usestate
         let len = count
+        if (count === 0) { return false }
         for (let index = 0; index < len; index++) {
             const divv = document.createElement("div")
 
@@ -148,6 +156,7 @@ function CustomiseApp () {
             divv.outerHTML = data[index]
         }
         console.log("len", count)
+        document.getElementById('load').disabled = true;
     }
 
     function createElement() {                //Write into database a new element 
@@ -157,12 +166,14 @@ function CustomiseApp () {
 
         const parent = document.getElementById('maindiv')
         parent.appendChild(divv)
-        divv.outerHTML = defaultInnerDiv
-
-        
+        divv.outerHTML = defaultInnerDiv 
 
         console.log(divv.outerHTML)
     }
+
+    // function myFunction(event) { 
+    //     event.target.style.color = "red";
+    // }
 
     
     return(
@@ -170,10 +181,9 @@ function CustomiseApp () {
             <section id='maindiv' className='section1'>
                 <h1>Customise page</h1>
 
-                {/* <button onClick={() => { testFunction(db)}}>Reset</button> */}
                 {/* <button onClick={() => { UpdateRealTimeDB(db)}}>Create</button> */}
                 <button onClick={() => { createElement()}}>Create</button>
-                {/* <button onClick={() => { loadElements()}}>Load</button> */}
+                <button id='load' onClick={() => { loadElements()}}>Load</button>
 
             </section>
 
