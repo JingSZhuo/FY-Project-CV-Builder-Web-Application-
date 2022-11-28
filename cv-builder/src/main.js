@@ -1,3 +1,4 @@
+import { Outlet } from 'react-router-dom';
 import './main.css';
 import './reset.css';
 
@@ -13,6 +14,7 @@ function MainApp() {
         <h1 className='header'>Header h1</h1>
         
       </section>
+      <Outlet/>
     </div>
   );
 }
