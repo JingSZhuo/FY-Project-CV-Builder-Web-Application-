@@ -18,7 +18,7 @@ function MainApp() {
 
       <section id='canvas' className='section1'>
         <h1 className='header'>Main Page</h1>
-        
+        <QuestionnairePage/>
       </section>
       <Outlet/>
     </body>
