@@ -11,7 +11,7 @@ const firebaseConfig = {
   messagingSenderId: "225800717774",
   appId: "1:225800717774:web:426a7fb3ccd0964c49d79f",
   measurementId: "G-5EVXQ0V8NV",
-  databaseURL: "https://cvconstruct2022-default-rtdb.europe-west1.firebasedatabase.app",
+  //databaseURL: "https://cvconstruct2022-default-rtdb.europe-west1.firebasedatabase.app",
 };
 
 // Initialize Firebase

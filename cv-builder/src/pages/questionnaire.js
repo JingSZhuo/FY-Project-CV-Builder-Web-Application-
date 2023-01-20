@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react';
 
 /* COMPONENTS AND PAGES */
 import Q1 from '../quiz_components/quiz_1'
+import Q2 from '../quiz_components/quiz_2'
+
 
 const QuestionnairePage = () => {
 
@@ -23,25 +25,27 @@ const QuestionnairePage = () => {
         console.log("Question", question)
     }
 
-    function QuestionNumber () {
-        return question;
-    }
-
     return ( 
         <div>
 
-            <div>
+            <div className='header-position'>
                 <h1>Questionnaire</h1>
             </div>
             {/* conditonal rendering */}
-            {
-                QuestionNumber() === 0 ?  <Q1/>  :    <button onClick={PreviousQuestion}>Previous</button>
-            }
-            {
-                QuestionNumber() === 0 ?  <button onClick={NextQuestion}>Next</button> : <div/>
-            }
-
-
+            <section>
+                {
+                    question === 0 ?  <Q1/>  : null
+                }
+                {
+                    question === 1 ? <Q2/> : null
+                }
+                {
+                    question >= 1 ? <button onClick={PreviousQuestion}>Previous</button> : null
+                }
+                {
+                    question >= 0 ?  <button onClick={NextQuestion}>Next</button> : null
+                }
+            </section>
         </div>
     );
 }

@@ -21,7 +21,7 @@ const QuestionOne = () => {
             </div>
 
             <br></br>
-            <label for='role' >What sector do you want to create a CV for?</label>
+            <label>What sector do you want to create a CV for?</label>
             <br></br>
             <select name='role' id='question_one'>
                 <option value="finance" >Accounting and Finance</option>
