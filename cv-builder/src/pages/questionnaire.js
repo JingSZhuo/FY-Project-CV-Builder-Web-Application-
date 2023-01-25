@@ -34,7 +34,7 @@ const QuestionnairePage = () => {
             {/* conditonal rendering */}
             <section>
                 {
-                    question === 0 ?  <Q1/>  : null
+                    question === 0 ?  <Q1/> : null
                 }
                 {
                     question === 1 ? <Q2/> : null
