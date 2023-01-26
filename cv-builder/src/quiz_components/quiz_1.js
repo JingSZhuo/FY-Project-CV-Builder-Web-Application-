@@ -9,13 +9,13 @@ import { useEffect, useState } from 'react';
 /* COMPONENTS AND PAGES */
 
 /* FIREBASE */
-import db from '../firebase'
-import {  doc, updateDoc } from 'firebase/firestore'
+import db from '../firebase';
+import {  doc, updateDoc } from 'firebase/firestore';
 
 
 function GetAnswerForQ1 () {                                               //Get quiz Value
-    const x = document.getElementById("question_one").value
-    console.log(x)
+    const x = document.getElementById("question_one").value;
+    console.log(x);
 }
 
 const QuestionOne = () => {
@@ -36,10 +36,11 @@ const QuestionOne = () => {
             <label>What sector do you want to create a CV for?</label>
             <br></br>
             <select name='role' id='question_one' onChange={UpdateDatabase}>
+                <option value="null" > -- </option>
                 <option value="finance" >Accounting and Finance</option>
                 <option value="computing" >Software and IT</option>
             </select>
-            <input type="submit" onClick={GetAnswerForQ1} />
+            {/* <input type="submit" onClick={GetAnswerForQ1} /> */}
 
             <br></br>
 

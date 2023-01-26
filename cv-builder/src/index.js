@@ -11,7 +11,8 @@ import CustomisePage from './pages/customisePage';
 import CanvasApp from './pages/customisePage2';
 
 /*COMPONENTS AND PAGES*/
-import Questionnaire from './pages/questionnaire'
+import Questionnaire from './pages/questionnaire';
+import BaseTemplate from './pages/baseTemplate';
 
 /*REACT ROUTER*/
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -19,8 +20,7 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path='/' element={ <MainApp/> }/>
-      <Route path='/questionnaire' element={ <Questionnaire/> } />
-
+      <Route path='/cv_template' element={ <BaseTemplate/>  } />
 
       {/* <Route path='/custom' element={ <CustomisePage/> }/>
       <Route path='/canvas' element={ <CanvasApp/> }/> */}

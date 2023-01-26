@@ -1,16 +1,17 @@
+// /* REACT IMPORTS */
+import { useNavigate } from 'react-router-dom';
+
 /* CSS FILES */ 
 import '../main.css';
 import '../reset.css';
 
-/* COMPONENTS AND PAGES */
-
 /* FIREBASE */
-import db from '../firebase'
-import {  doc, updateDoc } from 'firebase/firestore'
+import db from '../firebase';
+import {  doc, updateDoc } from 'firebase/firestore';
 
 
 async function UpdateDatabase (value) {
-    await updateDoc( doc( db, "UserAuthExample", "OptionChosen" ), { q2: `${ value }` } )
+    await updateDoc( doc( db, "UserAuthExample", "OptionChosen" ), { q2: `${ value }` } );
 }
 
 
@@ -19,13 +20,19 @@ function GetAnswerForQ2 () {                                               //Get
 
     for (let i = 0; i < x.length; i++) {
         if (x[i].value !== undefined && x[i].checked) {
-            UpdateDatabase(x[i].value)
-            console.log(x[i].value)
+            UpdateDatabase(x[i].value);
+            console.log(x[i].value);
         }
     }
 }
 
+function DirectToTemplate() {
+    const navigate = useNavigate()
+    navigate('/')
+}
+
 const QuestionTwo = () => {
+
 
     return ( 
 
@@ -46,7 +53,7 @@ const QuestionTwo = () => {
                 <input type={"radio"} id='three-plus' name='experience' value="three" onChange={GetAnswerForQ2}/>
                 <label>3+ years</label>
 
-                <input type="submit" onClick={GetAnswerForQ2}/>
+                {/* <input type="submit" onClick={DirectToTemplate}/> */}
             </form>
         </section>
      );
