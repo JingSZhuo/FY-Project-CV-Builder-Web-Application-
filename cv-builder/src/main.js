@@ -16,7 +16,7 @@ function MainApp() {
       </nav>
 
 
-      <section id='canvas' className='section1'>
+      <section id='canvas' className='section'>
         <h1 className='header'>Main Page</h1>
         <QuestionnairePage/>
       </section>

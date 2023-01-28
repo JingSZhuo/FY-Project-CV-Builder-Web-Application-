@@ -9,6 +9,10 @@ import '../reset.css';
 import db from '../firebase'
 import { useNavigate } from 'react-router-dom';
 
+/* COMPONENTS */
+
+import ProfileSummary from '../cv_section_components/ProfileSummary';
+
 const BaseTemplate = () => {
 
     const navigate = useNavigate();
@@ -31,9 +35,12 @@ const BaseTemplate = () => {
 
             <section id='canvas' className='section1'>
                 <h1 className='header'>Template Page</h1>
+                            
+                <section className='main-body-template-page'>
+                    <ProfileSummary/>
+                </section>
             </section>
             <br></br>
-            
 
         </body>
 
