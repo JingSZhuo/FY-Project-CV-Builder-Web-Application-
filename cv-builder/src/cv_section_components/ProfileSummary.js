@@ -12,10 +12,12 @@ import { doc, setDoc, addDoc, collection, updateDoc } from 'firebase/firestore';
 async function handleSubmit (event) {
     event.preventDefault();
     await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), {
-        FName: document.getElementById("fName").value,
-        LName: document.getElementById("lName").value,
-        Email: document.getElementById("Email").value,
-        Contact: document.getElementById("ContactNumber").value,
+        profile : {
+            FName: document.getElementById("fName").value,
+            LName: document.getElementById("lName").value,
+            Email: document.getElementById("Email").value,
+            Contact: document.getElementById("ContactNumber").value,
+        }
     })
     console.log("Updated Data to DB")
 }
@@ -24,10 +26,12 @@ async function CreateProfileSummaryDB() {
     console.log("Created Profile Summary Section in DB")
     //await addDoc(collection(db, "UserAuthExample"), {
     await setDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), {
-        FName: "",
-        LName: "",
-        Email: "",
-        Contact: "",
+        profile : {
+            FName: "",
+            LName: "",
+            Email: "",
+            Contact: "",
+        }
     });
 }
 
@@ -41,7 +45,7 @@ const ProfileSummary = () => {
 
 
     return ( 
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit} className='profile-form' >
             <h2>Profile Summary</h2>
             <br></br>
             <input id='fName' type={"text"} placeholder='First Name' name='fName'/>

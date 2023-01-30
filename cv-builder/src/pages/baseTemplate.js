@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 /* COMPONENTS */
 
 import ProfileSummary from '../cv_section_components/ProfileSummary';
+import ModernTemplateModel from '../template_components/Modern';
 
 const BaseTemplate = () => {
 
@@ -37,7 +38,8 @@ const BaseTemplate = () => {
                 <h1 className='header'>Template Page</h1>
                             
                 <section className='main-body-template-page'>
-                    <ProfileSummary/>
+                    <ProfileSummary  />
+                    <ModernTemplateModel />
                 </section>
             </section>
             <br></br>

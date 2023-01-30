@@ -33,12 +33,12 @@ const QuestionOne = () => {
             </div>
 
             <br></br>
-            <label>What sector do you want to create a CV for?</label>
+            <label>Which sector do you want to create a CV for?</label>
             <br></br>
             <select name='role' id='question_one' onChange={UpdateDatabase}>
                 <option value="null" > -- </option>
-                <option value="finance" >Accounting and Finance</option>
-                <option value="computing" >Software and IT</option>
+                <option value="Finance" >Accounting and Finance</option>
+                <option value="Technology" >Software and IT</option>
             </select>
             {/* <input type="submit" onClick={GetAnswerForQ1} /> */}
 
