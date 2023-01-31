@@ -9,39 +9,33 @@ import { doc, setDoc, addDoc, collection, updateDoc } from 'firebase/firestore';
 
 
 
-async function handleSubmit (event) {
+async function handleSubmit (event) {     //Create fresh document
     event.preventDefault();
-    await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), {
-        profile : {
-            FName: document.getElementById("fName").value,
-            LName: document.getElementById("lName").value,
-            Email: document.getElementById("Email").value,
-            Contact: document.getElementById("ContactNumber").value,
-        }
-    })
-    console.log("Updated Data to DB")
+    const FName = document.getElementById("fName").value;
+    const LName = document.getElementById("lName").value;
+    const Email = document.getElementById("Email").value;
+    const Contact = document.getElementById("ContactNumber").value;
+    try  {
+        if(FName.trim() === "") throw new Error("Cannot be empty"); 
+        if (isNaN(Contact) || Contact.trim() === "") throw new Error("Not a number")
+        await setDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), {
+            profile : {
+                FName: FName,
+                LName: LName,
+                Email: Email,
+                Contact: Contact,
+            }
+        });
+        alert("Submitted to DB");
+    }
+    catch (error) { alert("Something went wrong with data input: ", error.message) }
 }
-
-async function CreateProfileSummaryDB() {
-    console.log("Created Profile Summary Section in DB")
-    //await addDoc(collection(db, "UserAuthExample"), {
-    await setDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), {
-        profile : {
-            FName: "",
-            LName: "",
-            Email: "",
-            Contact: "",
-        }
-    });
-}
-
-
 
 const ProfileSummary = () => {
 
     useEffect(() => {
-        CreateProfileSummaryDB()
-    },[])
+        
+    }, [])
 
 
     return ( 
@@ -60,7 +54,7 @@ const ProfileSummary = () => {
             <input id='ContactNumber' type={"number"} placeholder='Contact Number' name='contact_number' />
             <br></br>
             <br></br> 
-            <input type={"submit"} value={"submit"}/>
+            <input type={"submit"} value={"preview"}/>
         </form>
      );
 }

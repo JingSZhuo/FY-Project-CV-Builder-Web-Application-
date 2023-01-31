@@ -40,3 +40,20 @@
   width: 100%;
   height: 100%;
 }
+
+.flex-outer{
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.left-side{
+  width: 30%;
+  height: 100%;
+  background-color: aqua;
+}
+.right-side{
+  width: 70%;
+  height: 100%;
+  background-color: antiquewhite;
+}
