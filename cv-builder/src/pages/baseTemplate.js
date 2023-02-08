@@ -38,7 +38,12 @@ const BaseTemplate = () => {
                 <h1 className='header'>Template Page</h1>
                             
                 <section className='main-body-template-page'>
-                    <ProfileSummary  />
+
+                    <ProfileSummary/>
+
+                    {/* Conditional Rendering of section  */}
+
+
                     <ModernTemplateModel />
                 </section>
             </section>

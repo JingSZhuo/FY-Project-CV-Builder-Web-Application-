@@ -1,5 +1,5 @@
 /* REACT IMPORTS */
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 /* CSS FILES */ 
 import '../main.css';
@@ -56,6 +56,12 @@ const QuestionnairePage = () => {
                     question >= 0 && question < 1?  <button onClick={NextQuestion}>Next</button> : <button onClick={DirectToTemplate}>Done</button>
                 }
             </section>
+            <div>
+                <br></br>
+                <Link to="/preview-temaplate">Template Preview</Link>
+                <br></br>
+                <br></br>
+            </div>
         </div>
     );
 }

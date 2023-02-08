@@ -32,6 +32,7 @@
 
 .profile-form, .cv-preview{
   width: 50%;
+  min-height: 80vh;
 }
 
 .template{
@@ -56,4 +57,13 @@
   width: 70%;
   height: 100%;
   background-color: antiquewhite;
+}
+
+/*PREVIEW PAGE CSS*/
+
+.preview{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
 }
