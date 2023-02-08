@@ -1,7 +1,9 @@
 /* CSS FILES */
-import '../main.css';
+import '../main.scss';
 import '../reset.css';
 
+/* FIREBASE */
+import db from '../firebase';
 
 const Education = () => {
     return ( 

@@ -1,9 +1,11 @@
+$background-color: rgba(66, 133, 56, 0.76);
+
 .main {
-  background-color: rgba(53, 53, 53, 0.76);
+  background-color: $background-color;
 }
 
 .navbar {
-  background-color: rgba(0, 0, 0, 0.837);
+  background-color: $background-color;
   height: 58px;
 }
 

@@ -1,5 +1,5 @@
 /* CSS FILES */
-import '../main.css';
+import '../main.scss';
 import '../reset.css';
 
 /* FIREBASE */
@@ -31,16 +31,15 @@ const ModernTemplateModel = () => {
             <div className='template'>
                 <div className='flex-outer'>
                     <div className='left-side'>
-                    <br></br>
-                    {profile['FName'] + "\t"}
-                    {profile['LName']}
-                    <br></br>
-                    {profile['Email']}
-                    <br></br>
-                    {profile['Contact']}
-                    <br></br>
-                    {profile['id']}
-                    
+                        <br></br>
+                        {profile['FName'] + "\t"}
+                        {profile['LName']}
+                        <br></br>
+                        {profile['Email']}
+                        <br></br>
+                        {profile['Contact']}
+                        <br></br>
+                        {profile['id']}
                     </div>
                     <div className='right-side'>
 

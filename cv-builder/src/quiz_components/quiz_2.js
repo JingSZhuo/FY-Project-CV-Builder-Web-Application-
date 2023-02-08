@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom';
 
 /* CSS FILES */ 
-import '../main.css';
+import '../main.scss';
 import '../reset.css';
 
 /* FIREBASE */

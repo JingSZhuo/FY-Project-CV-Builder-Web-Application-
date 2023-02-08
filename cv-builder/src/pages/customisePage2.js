@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'; 
 
 /*CSS FILES*/ 
-import '../main.css';
+import '../main.scss';
 import '../reset.css';
 
 

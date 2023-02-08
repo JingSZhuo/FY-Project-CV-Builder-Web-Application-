@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 
 /* CSS FILES */
-import '../main.css';
+import '../main.scss';
 import '../reset.css';
 
 /* FIREBASE */
@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 /* COMPONENTS */
 
-import ProfileSummary from '../cv_section_components/ProfileSummary';
+import FormSection from '../cv_section_components/formSection';
 import ModernTemplateModel from '../template_components/Modern';
 
 const BaseTemplate = () => {
@@ -38,12 +38,7 @@ const BaseTemplate = () => {
                 <h1 className='header'>Template Page</h1>
                             
                 <section className='main-body-template-page'>
-
-                    <ProfileSummary/>
-
-                    {/* Conditional Rendering of section  */}
-
-
+                    <FormSection/>
                     <ModernTemplateModel />
                 </section>
             </section>

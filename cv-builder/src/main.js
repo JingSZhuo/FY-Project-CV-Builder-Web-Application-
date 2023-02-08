@@ -2,7 +2,7 @@
 import { Outlet } from 'react-router-dom';
 
 /* CSS FILES */
-import './main.css';
+import './main.scss';
 import './reset.css';
 
 /* COMPONENTS AND PAGES */

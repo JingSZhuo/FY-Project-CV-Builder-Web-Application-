@@ -1,5 +1,5 @@
 /*CSS FILES*/ 
-import '../main.css';
+import '../main.scss';
 import '../reset.css';
 
 /*PACKAGES*/
