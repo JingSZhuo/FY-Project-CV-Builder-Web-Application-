@@ -11,6 +11,7 @@ import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 
 function AddEducation () {
 
+    /* Adds to Database + adds onto array */
     async function handleSubmitEducation (event) {
         event.preventDefault();
         const Institution = document.getElementById("institution").value
@@ -21,7 +22,6 @@ function AddEducation () {
         const description = document.getElementById("description").value
         await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
             Education : arrayUnion(
-                
                     {
                         Institution: Institution,
                         City: city,
@@ -57,7 +57,7 @@ function AddEducation () {
             <textarea id='description' type='text' name='description' placeholder='description' style={{resize: 'vertical', width: '300px', minHeight: '100px'}} />
             <br></br>
             <br></br>
-            <input id='submit' type='submit' value={'submit'} />
+            <input id='submit' type='submit' value={'Add'} />
             <br></br>
             <br></br>
         </form>

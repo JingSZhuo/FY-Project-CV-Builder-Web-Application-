@@ -23,20 +23,20 @@ const ProfileSummary = () => {
         triggerNextComponent(a => a - 1);
     }
 
-    async function CreateEducationArray () {
-        await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
-            Education : [
-                {
-                    Institution: "",
-                    City: "",
-                    StartDate: "",
-                    EndDate: "",
-                    Description: "",
-                }
-            ]
-        });
+    // async function CreateEducationArray () {
+    //     await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
+    //         Education : [
+    //             {
+    //                 Institution: "",
+    //                 City: "",
+    //                 StartDate: "",
+    //                 EndDate: "",
+    //                 Description: "",
+    //             }
+    //         ]
+    //     });
     
-    }
+    // }
 
 
     return ( 
@@ -45,7 +45,7 @@ const ProfileSummary = () => {
             {/* PROFILE */}
             { nextComponent === 0 ? <Profile/> : null }
             <br></br>
-            { nextComponent === 0 ? <button onClick={() =>  {NextComponent(); CreateEducationArray();}} >Next (Education)</button> : null }
+            { nextComponent === 0 ? <button onClick={() =>  {NextComponent(); }} >Next (Education)</button> : null }
 
             {/* EDUCATION */}
 
