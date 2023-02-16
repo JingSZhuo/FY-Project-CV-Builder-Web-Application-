@@ -34,6 +34,10 @@ const ModernTemplateModel = () => {
         ReadFromDB();
     }, [])
 
+    if (education == null) {
+        return <div>Loading...</div>
+    }
+
     if (education.length === 0) {
         return <div>Loading...</div>
     }
@@ -57,7 +61,7 @@ const ModernTemplateModel = () => {
                         <div>
                             <h2>Education</h2>
                             {
-                                education.map((data, index) => {
+                                education?.map((data, index) => {
 
                                     return(
                                         <div key={generateKey(index)}>

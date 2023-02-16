@@ -4,13 +4,19 @@ import '../reset.css';
 
 /* FIREBASE */
 import db from '../firebase';
-import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
+import { arrayUnion, doc, updateDoc, onSnapshot } from 'firebase/firestore';
 
+/* REACT  */
+import { useEffect, useState } from 'react';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 //* Add Education to Database */
 
 function AddEducation () {
 
+    //const [educationArray, setEducationArray] = useState([]);
+
+    
     /* Adds to Database + adds onto array */
     async function handleSubmitEducation (event) {
         event.preventDefault();
@@ -20,6 +26,15 @@ function AddEducation () {
         const startdate = document.getElementById("startdate").value
         const enddate = document.getElementById("enddate").value
         const description = document.getElementById("description").value
+        
+        // const educationObject = {
+        //     Institution: Institution,
+        //     City: city,
+        //     Course: course,
+        //     StartDate: startdate,
+        //     EndDate: enddate,
+        //     Description: description,
+        // }
         await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
             Education : arrayUnion(
                     {
@@ -34,6 +49,7 @@ function AddEducation () {
             ) 
         });
     }
+
 
     return(
         <form onSubmit={handleSubmitEducation}>
@@ -66,14 +82,51 @@ function AddEducation () {
 }
 
 const Education = () => {
+
+    const [education, setEducation] = useState([]);
+    const navigate = useNavigate();
+        
+    useEffect(()=> {
+        ReadFromDB();
+    }, [])
+
+
+    function ReadFromDB () {
+        onSnapshot(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), (doc) => {
+            console.log(doc.data()['profile']);
+            console.log(doc.data()['Education']);
+            const educationObject = doc.data()['Education'];
+            setEducation(educationObject);
+        });
+    }
+    
+    function generateKey(index) {
+        return index;
+    }
+
     return ( 
         <div>
 
             <h2>Education</h2>
             <br></br>
+            <div>
+                {
+                    education?.map((data, index) => {
+
+                        return(
+                            <div key={generateKey(index)}>
+                                <p>{data['Institution'] + " - " + data['Course'] }</p>
+                                <p> {data['StartDate'] + " - " + data['EndDate']} </p>
+                                <p>{data['Description']}</p>
+                                <Link to='/editeducation' state={{ identifier: `${index}` }}>Edit</Link>
+                                <hr></hr>
+                                {/* ADD EDIT BUTTON - PASS PROPS TO COMPONENT? */}
+                            </div>
+                        )
+                    })
+                }
+            </div>
             <AddEducation/>
-
-
         </div>
     );
 }
