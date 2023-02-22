@@ -10,6 +10,7 @@ import { doc, updateDoc } from 'firebase/firestore';
 /* COMPONENTS */
 import Profile from './Profile';
 import Education from './Education';
+import Experience from './Experience';
 
 
 const ProfileSummary = () => {
@@ -51,9 +52,15 @@ const ProfileSummary = () => {
 
             { nextComponent === 1 ? <Education/> : null }
             
-            { nextComponent >= 1 ? <button onClick={PreviousComponent} >Back</button> : null }
+            { nextComponent === 1 ? <button onClick={PreviousComponent} >Back</button> : null }
             { nextComponent === 1 ? <button onClick={NextComponent} >Next (Experience)</button> : null }
-           
+
+            {/* EXPERIENCE */}
+
+            { nextComponent === 2 ? <Experience/> : null }
+
+            { nextComponent >= 2 ? <button onClick={PreviousComponent} >Back</button> : null }
+            { nextComponent === 2 ? <button onClick={NextComponent} >Next (Skills)</button> : null }
 
         </div>
      );

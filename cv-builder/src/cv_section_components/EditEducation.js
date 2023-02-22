@@ -3,7 +3,7 @@ import '../main.scss';
 import '../reset.css';
 
 /* REACT */
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 
 /* FIREBASE */
@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 
 const EditEducation = () => {
 
+    /* passing state variable via Link */
     const location = useLocation();
 
     const [index, setIndex] = useState(location.state.identifier);
@@ -24,7 +25,7 @@ const EditEducation = () => {
     }, [])
 
 
-    /* Read From DB */
+    /* Read Education From DB AND set education object read from firebase to state variable*/
     function ReadFromDB () {
         onSnapshot(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), (doc) => {
             console.log(doc.data()['Education']);
@@ -33,7 +34,7 @@ const EditEducation = () => {
         });
     }
 
-    /* Modify education state (Array) and then adds to DB -> as Firebase does not allow modification of specfic index element*/
+    /* Modify education state variable (Array) and then adds to DB -> as Firebase does not allow modification of specfic index element*/
     async function handleSubmitEducation (event) {
         event.preventDefault();
         const institution = document.getElementById("institution").value
@@ -50,6 +51,7 @@ const EditEducation = () => {
             EndDate: enddate,
             Description: description,
         }
+        /* Upload entire state variable (array) to Firebase with updated element */
         await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
             Education
         });

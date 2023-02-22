@@ -93,7 +93,6 @@ const Education = () => {
 
     function ReadFromDB () {
         onSnapshot(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), (doc) => {
-            console.log(doc.data()['profile']);
             console.log(doc.data()['Education']);
             const educationObject = doc.data()['Education'];
             setEducation(educationObject);
@@ -118,7 +117,7 @@ const Education = () => {
                                 <p>{data['Institution'] + " - " + data['Course'] }</p>
                                 <p> {data['StartDate'] + " - " + data['EndDate']} </p>
                                 <p>{data['Description']}</p>
-                                <Link to='/editeducation' state={{ identifier: `${index}` }}>Edit</Link>
+                                <Link to={`/editeducation/${index}`}state={{ identifier: `${index}` }}>Edit</Link>
                                 <hr></hr>
                                 {/* ADD EDIT BUTTON - PASS PROPS TO COMPONENT? */}
                             </div>

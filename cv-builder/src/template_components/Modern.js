@@ -12,17 +12,16 @@ const ModernTemplateModel = () => {
 
     const [profile, setProfile] = useState({});
     const [education, setEducation] = useState([]);
+    const [experience, setExperience] = useState([]);
 
     function ReadFromDB () {
         onSnapshot(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), (doc) => {
-            console.log(doc.data()['profile']);
-            console.log(doc.data()['Education'])
             const profileObject = doc.data()['profile']; //Object
             const educationObject = doc.data()['Education'];
-            //const documentID = doc.id
-            //console.log(documentID);
+            const experienceObject = doc.data()['Experience'];
             setProfile(profileObject);
             setEducation(educationObject);
+            setExperience(experienceObject);
         });
     }
 
@@ -66,6 +65,24 @@ const ModernTemplateModel = () => {
                                     return(
                                         <div key={generateKey(index)}>
                                             <p>{data['Institution'] + " - " + data['Course'] }</p>
+                                            <p> {data['StartDate'] + " - " + data['EndDate']} </p>
+                                            <p>{data['Description']}</p>
+                                            <hr></hr>
+                                            {/* ADD EDIT BUTTON - PASS PROPS TO COMPONENT? */}
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                        <br></br>
+                        <div>
+                            <h2>Experience</h2>
+                            {
+                                experience?.map((data, index) => {
+
+                                    return(
+                                        <div key={generateKey(index)}>
+                                            <p>{data['JobTitle'] + " - " + data['Company'] }</p>
                                             <p> {data['StartDate'] + " - " + data['EndDate']} </p>
                                             <p>{data['Description']}</p>
                                             <hr></hr>
