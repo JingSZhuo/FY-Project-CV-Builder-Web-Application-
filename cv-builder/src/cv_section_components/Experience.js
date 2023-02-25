@@ -15,14 +15,21 @@ import ReactQuill from 'react-quill';
 
 function AddExperience () {
 
+    const [text, setText] = useState('');
+
     const modules = {
         toolbar: [
             [{ header: [1, 2, 3, 4, false]}],
             ['bold', 'italic', 'underline'],
             [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+            //[{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
             [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
         ],
+    }
+
+    const handleTextChange = (value) => {
+        setText(value);
+        console.log(text)
     }
 
 
@@ -34,16 +41,7 @@ function AddExperience () {
         const company = document.getElementById("company").value
         const startdate = document.getElementById("startdate").value
         const enddate = document.getElementById("enddate").value
-        const description = document.getElementById("description").value
         
-        // const educationObject = {
-        //     Institution: Institution,
-        //     City: city,
-        //     Course: course,
-        //     StartDate: startdate,
-        //     EndDate: enddate,
-        //     Description: description,
-        // }
         await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
             Experience : arrayUnion(
                     {
@@ -52,7 +50,7 @@ function AddExperience () {
                         Company: company,
                         StartDate: startdate,
                         EndDate: enddate,
-                        Description: description,
+                        Description: text, /*replace with value from Quill textbox */
                     }
                 
             ) 
@@ -88,10 +86,8 @@ function AddExperience () {
                 <input id='enddate' type='date' name='enddate' />
                 <br></br>
                 <br></br>
-                <textarea id='description' type='text' name='description' placeholder='description' style={{resize: 'vertical', width: '300px', minHeight: '100px'}} />
-
                 <div style={{backgroundColor: 'white', width:"80%"}}>
-                    <ReactQuill theme='snow' modules={modules} /> 
+                    <ReactQuill theme='snow' modules={modules} value={text} onChange={handleTextChange} /> 
                 </div>
                 <br></br>
                 <br></br>
@@ -136,7 +132,8 @@ const Experience = () => {
                             <div key={generateKey(index)}>
                                 <p>{data['JobTitle'] + " - " + data['Company'] }</p>
                                 <p> {data['StartDate'] + " - " + data['EndDate']} </p>
-                                <p>{data['Description']}</p>
+                                {/* <p>{data['Description']}</p> */}
+                                <div dangerouslySetInnerHTML={{__html: data['Description'] }} ></div>
                                 <Link to={`/editexperience/${index}`} state={{ identifier: `${index}` }}>Edit</Link> {/* ADD EDIT EXPERIENCE COMPONENT*/ }
                                 <hr></hr>
                             </div>

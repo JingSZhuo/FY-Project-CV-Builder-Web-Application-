@@ -117,7 +117,7 @@ const Education = () => {
                                 <p>{data['Institution'] + " - " + data['Course'] }</p>
                                 <p> {data['StartDate'] + " - " + data['EndDate']} </p>
                                 <p>{data['Description']}</p>
-                                <Link to={`/editeducation/${index}`}state={{ identifier: `${index}` }}>Edit</Link>
+                                <Link to={`/editeducation/${index}`} state={{ identifier: `${index}` }}>Edit</Link>
                                 <hr></hr>
                                 {/* ADD EDIT BUTTON - PASS PROPS TO COMPONENT? */}
                             </div>

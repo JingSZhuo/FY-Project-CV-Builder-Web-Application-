@@ -84,7 +84,8 @@ const ModernTemplateModel = () => {
                                         <div key={generateKey(index)}>
                                             <p>{data['JobTitle'] + " - " + data['Company'] }</p>
                                             <p> {data['StartDate'] + " - " + data['EndDate']} </p>
-                                            <p>{data['Description']}</p>
+                                            {/* <p>{data['Description']}</p> */}
+                                            <div dangerouslySetInnerHTML={{__html: data['Description'] }} ></div>
                                             <hr></hr>
                                             {/* ADD EDIT BUTTON - PASS PROPS TO COMPONENT? */}
                                         </div>

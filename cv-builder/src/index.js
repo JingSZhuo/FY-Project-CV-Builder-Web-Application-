@@ -7,9 +7,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './index.css';
 import MainApp from './main.js';
 
-import CustomisePage from './pages/customisePage';
-import CanvasApp from './pages/customisePage2';
-
 /*COMPONENTS AND PAGES*/
 
 import BaseTemplate from './pages/baseTemplate';
