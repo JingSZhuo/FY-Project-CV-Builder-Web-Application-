@@ -5,25 +5,38 @@ import '../reset.css';
 /* REACT */
 import { useLocation } from 'react-router-dom';
 
-
 /* FIREBASE */
 import db from '../firebase';
 import { doc, updateDoc, onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
+
+/* PACKAGES */
+import ReactQuill from 'react-quill';
 
 const EditEducation = () => {
 
     /* passing state variable via Link */
     const location = useLocation();
 
-    const [index, setIndex] = useState(location.state.identifier);
+    const [index] = useState(location.state.identifier);
     const [Education, setEducation] = useState([]);
+    const [text, setText] = useState('');
 
     /* Load Data once */
     useEffect(() => {
         ReadFromDB()
     }, [])
 
+    /* React quill settings */
+
+    const modules = {
+        toolbar: [
+            [{ header: [1, 2, 3, 4, false]}],
+            ['bold', 'italic', 'underline'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+        ],
+    }
 
     /* Read Education From DB AND set education object read from firebase to state variable*/
     function ReadFromDB () {
@@ -34,6 +47,11 @@ const EditEducation = () => {
         });
     }
 
+    const handleTextChange = (value) => {
+        setText(value);
+        console.log(text)
+    }
+
     /* Modify education state variable (Array) and then adds to DB -> as Firebase does not allow modification of specfic index element*/
     async function handleSubmitEducation (event) {
         event.preventDefault();
@@ -42,14 +60,13 @@ const EditEducation = () => {
         const course = document.getElementById("course").value
         const startdate = document.getElementById("startdate").value
         const enddate = document.getElementById("enddate").value
-        const description = document.getElementById("description").value
         Education[index] = {
             Institution: institution,
             City: city,
             Course: course,
             StartDate: startdate,
             EndDate: enddate,
-            Description: description,
+            Description: text,
         }
         /* Upload entire state variable (array) to Firebase with updated element */
         await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
@@ -80,7 +97,8 @@ const EditEducation = () => {
                 <input id='enddate' type='date' name='enddate' />
                 <br></br>
                 <br></br>
-                <textarea id='description' type='text' name='description' placeholder='description' style={{resize: 'vertical', width: '300px', minHeight: '100px'}} />
+                <ReactQuill theme='snow' modules={modules} value={text} onChange={handleTextChange} /> 
+                {/* <textarea id='description' type='text' name='description' placeholder='description' style={{resize: 'vertical', width: '300px', minHeight: '100px'}} /> */}
                 <br></br>
                 <br></br>
                 <input id='submit' type='submit' value={'Edit'} />

@@ -6,8 +6,9 @@ import '../main.scss';
 import '../reset.css';
 
 /* FIREBASE */
-import db from '../firebase'
-import { useNavigate } from 'react-router-dom';
+// import db from '../firebase'
+// import { useNavigate } from 'react-router-dom';
+// import { onSnapshot, doc } from 'firebase/firestore';
 
 /* COMPONENTS */
 
@@ -15,12 +16,6 @@ import FormSection from '../cv_section_components/formSection';
 import ModernTemplateModel from '../template_components/Modern';
 
 const BaseTemplate = () => {
-
-    const navigate = useNavigate();
-
-    function Redirect () {
-        navigate('/');
-    }
 
     useEffect(() => {
         console.log("performing some action...");

@@ -3,9 +3,9 @@ import '../main.scss';
 import '../reset.css';
 
 /* FIREBASE */
-import db from '../firebase';
-import { useEffect, useState } from 'react';
-import { doc, updateDoc } from 'firebase/firestore';
+// import db from '../firebase';
+import { useState } from 'react';
+// import { doc, updateDoc } from 'firebase/firestore';
 
 /* COMPONENTS */
 import Profile from './Profile';
@@ -23,22 +23,6 @@ const ProfileSummary = () => {
     function PreviousComponent () {
         triggerNextComponent(a => a - 1);
     }
-
-    // async function CreateEducationArray () {
-    //     await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
-    //         Education : [
-    //             {
-    //                 Institution: "",
-    //                 City: "",
-    //                 StartDate: "",
-    //                 EndDate: "",
-    //                 Description: "",
-    //             }
-    //         ]
-    //     });
-    
-    // }
-
 
     return ( 
         <div className='profile-form'>

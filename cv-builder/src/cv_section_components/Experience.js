@@ -52,7 +52,6 @@ function AddExperience () {
                         EndDate: enddate,
                         Description: text, /*replace with value from Quill textbox */
                     }
-                
             ) 
         });
     }

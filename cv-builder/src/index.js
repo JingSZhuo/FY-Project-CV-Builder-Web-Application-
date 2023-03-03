@@ -14,18 +14,17 @@ import PreviewTemplate from './pages/previewTemplate';
 import EditEducation from './cv_section_components/EditEducation';
 import EditExperience from './cv_section_components/EditExperience';
 
-/*REACT ROUTER*/
+/*REACT ROUTER ROUTES*/
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
+    {/* Nesting routes will show both the outer component and the nested component */}
     <Routes>
-      <Route path='/' element={ <MainApp/> }/>
+      <Route path='/' element={ <MainApp/> }/> 
       <Route path='/cv_template' element={ <BaseTemplate/>  } />
       <Route path='/preview-temaplate' element={ <PreviewTemplate/> } />
       <Route path='/editeducation/:id' element={ <EditEducation/> } />
       <Route path='/editexperience/:id' element={ <EditExperience/> } />
-      {/* <Route path='/custom' element={ <CustomisePage/> }/>
-      <Route path='/canvas' element={ <CanvasApp/> }/> */}
     </Routes>
   </BrowserRouter>
 );

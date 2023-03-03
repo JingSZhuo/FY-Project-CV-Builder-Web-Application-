@@ -10,13 +10,13 @@ import { useEffect, useState } from 'react';
 
 const ModernTemplateModel = () => {
 
-    const [profile, setProfile] = useState({});
+    const [profile, setProfile] = useState([]);
     const [education, setEducation] = useState([]);
     const [experience, setExperience] = useState([]);
 
     function ReadFromDB () {
         onSnapshot(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), (doc) => {
-            const profileObject = doc.data()['profile']; //Object
+            const profileObject = doc.data()['profile'];
             const educationObject = doc.data()['Education'];
             const experienceObject = doc.data()['Experience'];
             setProfile(profileObject);
@@ -33,12 +33,10 @@ const ModernTemplateModel = () => {
         ReadFromDB();
     }, [])
 
-    if (education == null) {
-        return <div>Loading...</div>
-    }
+    /* Conditional Rendering */
 
-    if (education.length === 0) {
-        return <div>Loading...</div>
+    if (profile == null) {
+        return <div>Loading profile...</div>
     }
 
     return ( 
@@ -66,7 +64,7 @@ const ModernTemplateModel = () => {
                                         <div key={generateKey(index)}>
                                             <p>{data['Institution'] + " - " + data['Course'] }</p>
                                             <p> {data['StartDate'] + " - " + data['EndDate']} </p>
-                                            <p>{data['Description']}</p>
+                                            <div dangerouslySetInnerHTML={{__html: data['Description'] }} ></div>
                                             <hr></hr>
                                             {/* ADD EDIT BUTTON - PASS PROPS TO COMPONENT? */}
                                         </div>

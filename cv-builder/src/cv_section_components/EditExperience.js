@@ -11,7 +11,7 @@ import { doc, updateDoc, onSnapshot } from 'firebase/firestore';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-/* OTHER COMPONENTS */
+/* PACKAGES */
 import ReactQuill from 'react-quill';
 
 const EditExperience = () => {
@@ -20,7 +20,7 @@ const EditExperience = () => {
     const location = useLocation();
 
     /* storing states for reading data and modification */
-    const [index, setIndex] = useState(location.state.identifier);
+    const [index] = useState(location.state.identifier);
     const [Experience, setExperience] = useState([]);
     const [text, setText] = useState('');
 
@@ -79,7 +79,6 @@ const EditExperience = () => {
 
     return ( 
         <div>
-
             <div>
                 <h1>Edit</h1>
                 <p>{location.state?.identifier}</p>
