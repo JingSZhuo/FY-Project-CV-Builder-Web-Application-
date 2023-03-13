@@ -10,7 +10,6 @@ import { arrayUnion, doc, updateDoc, onSnapshot } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-// import ReactQuill from 'react-quill'
 import ReactQuill from 'react-quill';
 
 function AddExperience () {
@@ -22,7 +21,6 @@ function AddExperience () {
             [{ header: [1, 2, 3, 4, false]}],
             ['bold', 'italic', 'underline'],
             [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            //[{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
             [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
         ],
     }
@@ -58,7 +56,6 @@ function AddExperience () {
 
     return(
         <div>
-            
             <head>
                 <meta charSet='utf-8'></meta>
                 <script>
@@ -101,17 +98,41 @@ function AddExperience () {
 const Experience = () => {
 
     const [experience, setExperience] = useState([]);
+    const [jobrole, setJobRole] = useState(""); 
+    const [yearExp, setYearExp] = useState("");
+    const [recommendationBeginner, setRecommendationBeginner] = useState([]);
+    const [recommendationExperienced, setRecommendationExperienced] = useState([]);
 
     useEffect(() => {
         ReadFromDB();
-    }, [])
+    }, [jobrole, yearExp])
 
     function ReadFromDB () {
+        //load Experience data object
         onSnapshot(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), (doc) => {
-            console.log(doc.data()['Experience']);
             const educationObject = doc.data()['Experience'];
             setExperience(educationObject);
         });
+        //load user questionnaire answers
+        onSnapshot(doc(db, "UserAuthExample", "OptionChosen"), (doc) => {
+            setJobRole(doc.data()['q1']);
+            setYearExp(doc.data()['q2']);
+        });
+
+        //Conditional -> as jobrole / yearExp is still being updated -> to prevent rendering and empty path error.
+        if(jobrole === "" || yearExp === ""){
+            console.log("loading job role/yearExp..");
+        }
+        else {
+            console.log("loaded job role/yearExp...");
+            //use user questionnaire answers to load appropriate dataset recommendation
+            onSnapshot(doc(db, jobrole, "Examples"), (doc) => {
+                console.log(doc.data()[`${yearExp}`]);
+                console.log("Job role:", jobrole);
+                console.log("yearexp:", yearExp);
+                setRecommendationBeginner(doc.data()[`${yearExp}`]);
+            });
+        }
     }
 
         
@@ -131,9 +152,8 @@ const Experience = () => {
                             <div key={generateKey(index)}>
                                 <p>{data['JobTitle'] + " - " + data['Company'] }</p>
                                 <p> {data['StartDate'] + " - " + data['EndDate']} </p>
-                                {/* <p>{data['Description']}</p> */}
                                 <div dangerouslySetInnerHTML={{__html: data['Description'] }} ></div>
-                                <Link to={`/editexperience/${index}`} state={{ identifier: `${index}` }}>Edit</Link> {/* ADD EDIT EXPERIENCE COMPONENT*/ }
+                                <Link to={`/editexperience/${index}`} state={{ identifier: `${index}` }}>Edit</Link>
                                 <hr></hr>
                             </div>
                         )

@@ -1,5 +1,5 @@
-// /* REACT IMPORTS */
-import { useNavigate } from 'react-router-dom';
+/* REACT IMPORTS */
+
 
 /* CSS FILES */ 
 import '../main.scss';
@@ -26,14 +26,8 @@ function GetAnswerForQ2 () {                                               //Get
     }
 }
 
-function DirectToTemplate() {
-    const navigate = useNavigate()
-    navigate('/')
-}
 
 const QuestionTwo = () => {
-
-
     return ( 
 
         <section>
@@ -46,9 +40,9 @@ const QuestionTwo = () => {
             <label>How many years of experience do you have in this field?</label>
             <br></br>
             <form onSubmit={(e) => {e.preventDefault()}} id='question_two'>
-                <input type={"radio"} id='less-than-one' name='experience' value="one" onChange={GetAnswerForQ2} />
+                <input type={"radio"} id='less-than-one' name='experience' value="level_one" onChange={GetAnswerForQ2} />
                 <label>Less than 1 year</label>
-                <input type={"radio"} id='one-two-three' name='experience' value="two" onChange={GetAnswerForQ2}/>
+                <input type={"radio"} id='one-two-three' name='experience' value="level_two" onChange={GetAnswerForQ2}/>
                 <label>More than 1 year</label>
                 {/* <input type={"radio"} id='three-plus' name='experience' value="three" onChange={GetAnswerForQ2}/>
                 <label>3+ years</label> */}

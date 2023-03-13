@@ -6,9 +6,7 @@ import '../main.scss';
 import '../reset.css';
 
 /* FIREBASE */
-import { getDatabase, onValue, ref, update } from 'firebase/database';
-import db from '../firebase';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 /* COMPONENTS AND PAGES */
 import Q1 from '../quiz_components/quiz_1';
@@ -22,19 +20,15 @@ const QuestionnairePage = () => {
 
     function NextQuestion () {
         setQuestion(a => a + 1);             //increment by 1
-        console.log("Question", question);
     }
     function PreviousQuestion () {
         setQuestion(a => a - 1);             //decrement by 1
-        console.log("Question", question);
     }
-
         
     function DirectToTemplate() {
         navigate('/cv_template')
     }
     
-
     return ( 
         <div>
 
