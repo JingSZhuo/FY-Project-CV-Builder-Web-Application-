@@ -14,7 +14,7 @@ async function handleSubmit (event) {
     const LName = document.getElementById("lName").value;
     const Email = document.getElementById("Email").value;
     const Contact = document.getElementById("ContactNumber").value;
-    try  {
+    try{
         if(FName.trim() === "") throw new Error("Cannot be empty"); 
         if (isNaN(Contact) || Contact.trim() === "") throw new Error("Not a number")
         await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), {
@@ -27,7 +27,7 @@ async function handleSubmit (event) {
         });
         alert("Submitted to DB");
     }
-    catch (error) { alert("Something went wrong with data input: ", error.message) }
+    catch (error) { alert("Something went wrong with data input") }
 }
 
 const Profile = () => {
@@ -48,7 +48,7 @@ const Profile = () => {
                 <input id='ContactNumber' type={"number"} placeholder='Contact Number' name='contact_number' />
                 <br></br>
                 <br></br> 
-                <input type={"submit"} value={"Add-Profile"}/>
+                <input type={"submit"} value={"Add-Profile"} data-testid="submit"/>
             </form>
 
      );
