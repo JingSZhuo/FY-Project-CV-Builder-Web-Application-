@@ -100,12 +100,14 @@ const Experience = () => {
     const [experience, setExperience] = useState([]);
     const [jobrole, setJobRole] = useState(""); 
     const [yearExp, setYearExp] = useState("");
-    const [recommendationBeginner, setRecommendationBeginner] = useState([]);
-    const [recommendationExperienced, setRecommendationExperienced] = useState([]);
+    const [recommendation, setRecommendation] = useState([]);
+    const [recommendationRandomized, setRecommendationRandomized] = useState([...recommendation]);
+
+    const [trigger, setTrigger] = useState(false); 
 
     useEffect(() => {
         ReadFromDB();
-    }, [jobrole, yearExp])
+    }, [jobrole, yearExp, trigger])
 
     function ReadFromDB () {
         //load Experience data object
@@ -126,15 +128,25 @@ const Experience = () => {
         else {
             console.log("loaded job role/yearExp...");
             //use user questionnaire answers to load appropriate dataset recommendation
-            onSnapshot(doc(db, jobrole, "Examples"), (doc) => {
+            onSnapshot(doc(db, "JobRoles", jobrole), (doc) => {
                 console.log(doc.data()[`${yearExp}`]);
                 console.log("Job role:", jobrole);
                 console.log("yearexp:", yearExp);
-                setRecommendationBeginner(doc.data()[`${yearExp}`]);
+                setRecommendation(doc.data()[`${yearExp}`]);
+                
+                //To avoid re-rendering infinitely by using a state updater instead of an array dependency
+                setTrigger(true);
+                if (!trigger){ 
+                    console.log("Cannot randomise");
+                }
+                else { console.log("Randomising"); 
+                    const filteredArray = recommendation.filter(() => Math.random() < 0.6);
+                    setRecommendationRandomized(filteredArray);
+                }
+
             });
         }
     }
-
         
     function generateKey(index) {
         return index;
@@ -143,6 +155,25 @@ const Experience = () => {
     return ( 
         <div>
             <h1>Experience</h1>
+            <br></br>
+            <AddExperience/>
+            <br></br>
+            <div>
+                <h2>Here are some suggestions</h2>
+                {
+                    recommendationRandomized?.map((data, index) => {
+                        
+                        return(
+                            <div key={generateKey(index)}>
+                                <ul>
+                                    <li>{data}</li>
+                                </ul>
+                            
+                            </div>
+                        )
+                    })
+                }
+            </div>
             <br></br>
             <div>
                 {
@@ -160,7 +191,6 @@ const Experience = () => {
                     })
                 }
             </div>
-            <AddExperience/>
         </div>
     );
 }
