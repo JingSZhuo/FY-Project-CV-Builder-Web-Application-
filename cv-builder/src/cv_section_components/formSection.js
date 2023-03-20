@@ -11,6 +11,7 @@ import { useState } from 'react';
 import Profile from './Profile';
 import Education from './Education';
 import Experience from './Experience';
+import Skills from './Skills';
 
 
 const ProfileSummary = () => {
@@ -43,8 +44,15 @@ const ProfileSummary = () => {
 
             { nextComponent === 2 ? <Experience/> : null }
 
-            { nextComponent >= 2 ? <button onClick={PreviousComponent} >Back</button> : null }
+            { nextComponent === 2 ? <button onClick={PreviousComponent} >Back</button> : null }
             { nextComponent === 2 ? <button onClick={NextComponent} >Next (Skills)</button> : null }
+
+            {/* EXPERIENCE */}
+
+            { nextComponent === 3 ? <Skills/> : null }
+
+            { nextComponent >= 3 ? <button onClick={PreviousComponent} >Back</button> : null }
+            { nextComponent === 3 ? <button onClick={NextComponent} >Next (Other)</button> : null }
 
         </div>
      );

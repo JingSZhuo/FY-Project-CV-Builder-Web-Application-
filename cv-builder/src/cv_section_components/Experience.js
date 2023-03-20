@@ -9,6 +9,7 @@ import { arrayUnion, doc, updateDoc, onSnapshot } from 'firebase/firestore';
 /* REACT */
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import DOMPurify from 'dompurify';
 
 import ReactQuill from 'react-quill';
 
@@ -55,7 +56,7 @@ function AddExperience () {
     }
 
     return(
-        <div>
+        <div id='experience-form' >
             <head>
                 <meta charSet='utf-8'></meta>
                 <script>
@@ -101,7 +102,7 @@ const Experience = () => {
     const [jobrole, setJobRole] = useState(""); 
     const [yearExp, setYearExp] = useState("");
     const [recommendation, setRecommendation] = useState([]);
-    const [recommendationRandomized, setRecommendationRandomized] = useState([...recommendation]);
+    const [recommendationRandomized, setRecommendationRandomized] = useState([]);
 
     const [trigger, setTrigger] = useState(false); 
 
@@ -129,7 +130,7 @@ const Experience = () => {
             console.log("loaded job role/yearExp...");
             //use user questionnaire answers to load appropriate dataset recommendation
             onSnapshot(doc(db, "JobRoles", jobrole), (doc) => {
-                console.log(doc.data()[`${yearExp}`]);
+                //console.log(doc.data()[`${yearExp}`]);
                 console.log("Job role:", jobrole);
                 console.log("yearexp:", yearExp);
                 setRecommendation(doc.data()[`${yearExp}`]);
@@ -139,9 +140,16 @@ const Experience = () => {
                 if (!trigger){ 
                     console.log("Cannot randomise");
                 }
-                else { console.log("Randomising"); 
-                    const filteredArray = recommendation.filter(() => Math.random() < 0.6);
-                    setRecommendationRandomized(filteredArray);
+                else { console.log("Randomising Array"); 
+                    const randArray = [];
+                    //Getting 3 random elements from recommendation array without repeats
+                    for (let i=0; i <3; i++) {
+                        const randomIndex = Math.floor(Math.random() * recommendation.length);
+                        const randomElement = recommendation[randomIndex];
+                        randArray.push(randomElement);
+                        recommendation.splice(randomIndex, 1);
+                    }
+                    setRecommendationRandomized(randArray);
                 }
 
             });
@@ -168,7 +176,6 @@ const Experience = () => {
                                 <ul>
                                     <li>{data}</li>
                                 </ul>
-                            
                             </div>
                         )
                     })
@@ -178,13 +185,12 @@ const Experience = () => {
             <div>
                 {
                     experience?.map((data, index) => {
-
                         return(
                             <div key={generateKey(index)}>
                                 <p>{data['JobTitle'] + " - " + data['Company'] }</p>
                                 <p> {data['StartDate'] + " - " + data['EndDate']} </p>
-                                <div dangerouslySetInnerHTML={{__html: data['Description'] }} ></div>
-                                <Link to={`/editexperience/${index}`} state={{ identifier: `${index}` }}>Edit</Link>
+                                <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(data['Description'] )}} ></div>
+                                <Link to={`/editexperience/${index}`} state={{ identifier: `${index}` }}>Edit Experience</Link>
                                 <hr></hr>
                             </div>
                         )

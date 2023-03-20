@@ -7,21 +7,26 @@ import db from '../firebase'
 import { onSnapshot, doc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
+/* REACT */
+import DOMPurify from 'dompurify';
 
 const ModernTemplateModel = () => {
 
     const [profile, setProfile] = useState([]);
     const [education, setEducation] = useState([]);
     const [experience, setExperience] = useState([]);
+    const [skills, setSkills] = useState('');
 
     function ReadFromDB () {
         onSnapshot(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), (doc) => {
             const profileObject = doc.data()['profile'];
             const educationObject = doc.data()['Education'];
             const experienceObject = doc.data()['Experience'];
+            const skills = doc.data()['Skills'];
             setProfile(profileObject);
             setEducation(educationObject);
             setExperience(experienceObject);
+            setSkills(skills);
         });
     }
 
@@ -44,15 +49,10 @@ const ModernTemplateModel = () => {
             <div className='template'>
                 <div className='flex-outer'>
                     <div className='left-side'>
-                        <br></br>
-                        {profile['FName'] + "\t"}
-                        {profile['LName']}
-                        <br></br>
-                        {profile['Email']}
-                        <br></br>
-                        {profile['Contact']}
-                        <br></br>
-                        {profile['id']}
+                        <h2>Profile</h2>
+                        <p>{profile['FName'] + " " + profile['LName']}</p>
+                        <p>{profile['Email']}</p>
+                        <p>{profile['Contact']}</p>
                     </div>
                     <div className='right-side'>
                         <div>
@@ -91,9 +91,11 @@ const ModernTemplateModel = () => {
                                 })
                             }
                         </div>
-
+                        <div>
+                            <h2>Skills</h2>
+                            <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(skills) }}/>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>

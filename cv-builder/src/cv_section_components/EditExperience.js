@@ -61,6 +61,7 @@ const EditExperience = () => {
         const company = document.getElementById("company").value
         const startdate = document.getElementById("startdate").value
         const enddate = document.getElementById("enddate").value
+        //Editing the specified element in the useState Array and then uploading the newely-updated array to firebase.
         Experience[index] = {
             JobTitle: JobTitle,
             City: city,
@@ -107,7 +108,6 @@ const EditExperience = () => {
                     <br></br>
                     <br></br>
                 </form>
-                {/* <button onClick={TestAddToArray}>Test</button> */}
             </div>
         </div>
     );

@@ -38,7 +38,7 @@ const EditEducation = () => {
         ],
     }
 
-    /* Read Education From DB AND set education object read from firebase to state variable*/
+    /*1. Read Education From DB AND set education object read from firebase to state variable*/
     function ReadFromDB () {
         onSnapshot(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), (doc) => {
             console.log(doc.data()['Education']);
@@ -52,7 +52,7 @@ const EditEducation = () => {
         console.log(text)
     }
 
-    /* Modify education state variable (Array) and then adds to DB -> as Firebase does not allow modification of specfic index element*/
+    /*2. Modify education state variable (Array) and then updates it to firebase -> as Firebase does not allow modification of specfic index element - have to update on client side*/
     async function handleSubmitEducation (event) {
         event.preventDefault();
         const institution = document.getElementById("institution").value
@@ -60,6 +60,7 @@ const EditEducation = () => {
         const course = document.getElementById("course").value
         const startdate = document.getElementById("startdate").value
         const enddate = document.getElementById("enddate").value
+        /*3. Modify useState array's specific element */
         Education[index] = {
             Institution: institution,
             City: city,
@@ -68,7 +69,7 @@ const EditEducation = () => {
             EndDate: enddate,
             Description: text,
         }
-        /* Upload entire state variable (array) to Firebase with updated element */
+        /*4. Upload entire state variable (array) to Firebase with updated element */
         await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
             Education
         });
@@ -98,14 +99,12 @@ const EditEducation = () => {
                 <br></br>
                 <br></br>
                 <ReactQuill theme='snow' modules={modules} value={text} onChange={handleTextChange} /> 
-                {/* <textarea id='description' type='text' name='description' placeholder='description' style={{resize: 'vertical', width: '300px', minHeight: '100px'}} /> */}
                 <br></br>
                 <br></br>
                 <input id='submit' type='submit' value={'Edit'} />
                 <br></br>
                 <br></br>
             </form>
-            {/* <button onClick={TestAddToArray}>Test</button> */}
         </div>
     );
 }

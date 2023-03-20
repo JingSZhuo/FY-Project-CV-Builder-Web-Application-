@@ -9,6 +9,7 @@ import { arrayUnion, doc, updateDoc, onSnapshot } from 'firebase/firestore';
 /* REACT  */
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 
 /* PACKAGES */
 import ReactQuill from 'react-quill';
@@ -60,7 +61,7 @@ function AddEducation () {
 
 
     return(
-        <div>
+        <div id='education-form'>
             <head>
                 <meta charSet='utf-8'></meta>
                 <script>
@@ -95,9 +96,6 @@ function AddEducation () {
                 <br></br>
                 <br></br>
             </form>
-            <div>
-
-            </div>
         </div>
 
                     
@@ -129,26 +127,25 @@ const Education = () => {
 
     return ( 
         <div>
-
             <h2>Education</h2>
+            <br></br>
+            <AddEducation/>
             <br></br>
             <div>
                 {
                     education?.map((data, index) => {
-
                         return(
                             <div key={generateKey(index)}>
                                 <p>{data['Institution'] + " - " + data['Course'] }</p>
                                 <p> {data['StartDate'] + " - " + data['EndDate']} </p>
-                                <p dangerouslySetInnerHTML={{__html: data['Description']}}/>
-                                <Link to={`/editeducation/${index}`} state={{ identifier: `${index}` }}>Edit</Link>
+                                <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(data['Description']) }}/>
+                                <Link to={`/editeducation/${index}`} state={{ identifier: `${index}` }}>Edit Education</Link>
                                 <hr></hr>
                             </div>
                         )
                     })
                 }
             </div>
-            <AddEducation/>
         </div>
     );
 }
