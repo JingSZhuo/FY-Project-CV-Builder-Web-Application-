@@ -16,6 +16,8 @@ const ModernTemplateModel = () => {
     const [education, setEducation] = useState([]);
     const [experience, setExperience] = useState([]);
     const [skills, setSkills] = useState('');
+    const [otherHeader, setOtherHeader] = useState('');
+    const [other, setOther] = useState('');
 
     function ReadFromDB () {
         onSnapshot(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), (doc) => {
@@ -23,10 +25,14 @@ const ModernTemplateModel = () => {
             const educationObject = doc.data()['Education'];
             const experienceObject = doc.data()['Experience'];
             const skills = doc.data()['Skills'];
+            const otherHeader = doc.data()['OtherTitle'];
+            const other = doc.data()['Other'];
             setProfile(profileObject);
             setEducation(educationObject);
             setExperience(experienceObject);
             setSkills(skills);
+            setOtherHeader(otherHeader);
+            setOther(other);
         });
     }
 
@@ -94,6 +100,10 @@ const ModernTemplateModel = () => {
                         <div>
                             <h2>Skills</h2>
                             <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(skills) }}/>
+                        </div>
+                        <div>
+                            <h2>{otherHeader}</h2>
+                            <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(other) }}/>
                         </div>
                     </div>
                 </div>

@@ -12,6 +12,7 @@ import Profile from './Profile';
 import Education from './Education';
 import Experience from './Experience';
 import Skills from './Skills';
+import Other from './Other';
 
 
 const ProfileSummary = () => {
@@ -47,12 +48,21 @@ const ProfileSummary = () => {
             { nextComponent === 2 ? <button onClick={PreviousComponent} >Back</button> : null }
             { nextComponent === 2 ? <button onClick={NextComponent} >Next (Skills)</button> : null }
 
-            {/* EXPERIENCE */}
+            {/* SKILLS */}
 
             { nextComponent === 3 ? <Skills/> : null }
 
-            { nextComponent >= 3 ? <button onClick={PreviousComponent} >Back</button> : null }
+            { nextComponent === 3 ? <button onClick={PreviousComponent} >Back</button> : null }
             { nextComponent === 3 ? <button onClick={NextComponent} >Next (Other)</button> : null }
+
+            
+            {/* OTHER SECTION */}
+
+            { nextComponent === 4 ? <Other/> : null }
+
+            { nextComponent >= 4 ? <button onClick={PreviousComponent} >Back</button> : null }
+            { nextComponent === 4 ? <button >Finish (Add Function)</button> : null }
+
 
         </div>
      );

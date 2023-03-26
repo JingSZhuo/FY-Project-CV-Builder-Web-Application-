@@ -86,7 +86,7 @@ function AddEducation () {
                 <input id='enddate' type='date' name='enddate' />
                 <br></br>
                 <br></br>
-                {/* <textarea id='description' type='text' name='description' placeholder='description' style={{resize: 'vertical', width: '300px', minHeight: '100px'}} /> */}
+                <h3>Description</h3>
                 <div style={{backgroundColor: 'white', width:"80%"}}>
                     <ReactQuill theme='snow' modules={modules} value={text} onChange={handleTextChange} /> 
                 </div>

@@ -73,6 +73,7 @@ const EditEducation = () => {
         await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
             Education
         });
+        alert(`Education ${index} updated`);
     }
 
 

@@ -4,7 +4,8 @@ import '../reset.css';
 
 /* FIREBASE */
 import db from '../firebase';
-import { doc,  updateDoc } from 'firebase/firestore';
+import { doc,  updateDoc, onSnapshot } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
 
 
 /* SUBMIT FORM FUNCTION */
@@ -31,6 +32,42 @@ async function handleSubmit (event) {
 }
 
 const Profile = () => {
+
+    const [profile , setProfile] = useState([]);
+    const [trigger, setTrigger] = useState('false');
+
+    useEffect(() => {
+        ReadFromDB();
+        setValueFromDatabase();
+    }, [trigger]);
+
+    async function ReadFromDB() {
+        onSnapshot(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), (doc) => {
+            const profileObject = doc.data()['profile'];
+            setProfile(profileObject);
+            setTrigger('true');
+        });
+    }
+
+    function setValueFromDatabase() {
+        console.log(profile);
+        if (profile === undefined) {
+            //Simplify this??
+            console.log("Empty profile")
+            document.getElementById('fName').value = "";
+            document.getElementById('lName').value = "";
+            document.getElementById('Email').value = "";
+            document.getElementById('ContactNumber').value = "";
+        } else{
+            document.getElementById('fName').value = profile['FName'];
+            document.getElementById('lName').value = profile['LName'];
+            document.getElementById('Email').value = profile['Email'];
+            document.getElementById('ContactNumber').value = profile['Contact'];
+            console.log("Values set")
+        }
+    }
+
+
     return ( 
 
             <form onSubmit={handleSubmit}>
