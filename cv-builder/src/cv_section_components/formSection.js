@@ -29,6 +29,13 @@ const ProfileSummary = () => {
     return ( 
         <div className='profile-form'>
 
+<           head>
+                <meta charSet='utf-8'></meta>
+                <script>
+                    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"/>
+                </script>
+            </head>
+
             {/* PROFILE */}
             { nextComponent === 0 ? <Profile/> : null }
             <br></br>

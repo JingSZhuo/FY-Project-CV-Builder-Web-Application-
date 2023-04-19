@@ -10,29 +10,6 @@ import { useEffect, useState } from 'react';
 /* NPM PACKAGES */
 import DOMPurify from 'dompurify';
 
-/* SUBMIT FORM FUNCTION */
-async function handleSubmit (event) {     
-    event.preventDefault();
-    const FName = DOMPurify.sanitize(document.getElementById("fName").value);
-    const LName = DOMPurify.sanitize(document.getElementById("lName").value);
-    const Email = DOMPurify.sanitize(document.getElementById("Email").value);
-    const Contact = DOMPurify.sanitize(document.getElementById("ContactNumber").value);
-    try{
-        if(FName.trim() === "") throw new Error("Cannot be empty"); 
-        if (isNaN(Contact) || Contact.trim() === "") throw new Error("Not a number")
-        await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), {
-            profile : {
-                FName: FName,
-                LName: LName,
-                Email: Email,
-                Contact: Contact,
-            }
-        });
-        alert("Submitted to DB");
-    }
-    catch (error) { alert("Something went wrong with data input") }
-}
-
 const Profile = () => {
 
     const [profile , setProfile] = useState([]);
@@ -52,7 +29,7 @@ const Profile = () => {
     }
 
     function setValueFromDatabase() {
-        console.log(profile);
+        //console.log(profile);
         if (profile === undefined) {
             //Simplify this??
             console.log("Empty profile")
@@ -65,7 +42,31 @@ const Profile = () => {
             document.getElementById('lName').value = profile['LName'];
             document.getElementById('Email').value = profile['Email'];
             document.getElementById('ContactNumber').value = profile['Contact'];
-            console.log("Values set")
+            //console.log("Values set")
+        }
+    }
+
+        /* SUBMIT FORM FUNCTION */
+    async function handleSubmit (event) {     
+        event.preventDefault();
+        const FName = DOMPurify.sanitize(document.getElementById("fName").value);
+        const LName = DOMPurify.sanitize(document.getElementById("lName").value);
+        const Email = DOMPurify.sanitize(document.getElementById("Email").value);
+        const Contact = DOMPurify.sanitize(document.getElementById("ContactNumber").value);
+        try{
+            if(FName.trim() === "") throw new Error("Cannot be empty"); 
+            if (isNaN(Contact) || Contact.trim() === "") throw new Error("Not a number")
+            await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), {
+                profile : {
+                    FName: FName,
+                    LName: LName,
+                    Email: Email,
+                    Contact: Contact,
+                }
+            });
+            alert("Submitted to DB");
+        }
+        catch (error) { alert("Something went wrong with data input") 
         }
     }
 

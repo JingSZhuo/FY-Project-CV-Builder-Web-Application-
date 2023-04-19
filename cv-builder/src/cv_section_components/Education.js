@@ -44,29 +44,28 @@ function AddEducation () {
         const startdate = DOMPurify.sanitize(document.getElementById("startdate").value);
         const enddate = DOMPurify.sanitize(document.getElementById("enddate").value);
 
-        await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
-            Education : arrayUnion(
-                    {
-                        Institution: Institution,
-                        City: city,
-                        Course: course,
-                        StartDate: startdate,
-                        EndDate: enddate,
-                        Description: text,
-                    }
-            ) 
-        });
+        try {
+            if(Institution === "") throw new Error("Cannot be empty!");
+            await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
+                Education : arrayUnion(
+                        {
+                            Institution: Institution,
+                            City: city,
+                            Course: course,
+                            StartDate: startdate,
+                            EndDate: enddate,
+                            Description: text,
+                        }
+                ) 
+            });
+            alert("Submitted");
+        } catch (error) {
+            alert("Rejected");
+        }
     }
 
 
     return(
-        <div id='education-form'>
-            <head>
-                <meta charSet='utf-8'></meta>
-                <script>
-                    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"/>
-                </script>
-            </head>
             <form onSubmit={handleSubmitEducation}>
                 <input id='institution' type='text' placeholder='school or university' name='institution'/>
                 <br></br>
@@ -91,11 +90,11 @@ function AddEducation () {
                 </div>
                 <br></br>
                 <br></br>
-                <input id='submit' type='submit' value={'Add'} />
+                <input id='submit' type={"submit"} value={'Add'} data-testid="submitedu" />
                 <br></br>
                 <br></br>
             </form>
-        </div>  
+
     )
 }
 
@@ -144,5 +143,6 @@ const Education = () => {
         </div>
     );
 }
- 
+
+export { AddEducation };
 export default Education;
