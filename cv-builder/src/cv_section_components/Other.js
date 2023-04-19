@@ -34,7 +34,7 @@ function OtherForm () {
 
     async function handleSubmitFunction (event) {
         event.preventDefault();
-        const otherHeaderTitle = document.getElementById('heading').value
+        const otherHeaderTitle = DOMPurify.sanitize(document.getElementById('heading').value);
         await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
             OtherTitle : otherHeaderTitle,
             Other: text
@@ -54,12 +54,12 @@ function OtherForm () {
                 <h4>Add a extra section (optional)</h4>
                 <br></br>
                 <h4>Header Title </h4>
-                <input id='heading' type='text' placeholder='Add a header' />
+                <input id='heading' type='text' placeholder='Add a header'/>
                 <br></br>
                 <br></br>
                 <p>Editing this textbox will replace the old ones..</p>
                 <br></br>
-                <ReactQuill id='otherTextBox' theme='snow' modules={modules} value={text} onChange={handleTextChange} />
+                <ReactQuill id='otherTextBox' theme='snow' modules={modules} value={DOMPurify.sanitize(text)} onChange={handleTextChange} />
                 <br></br>
                 <br></br>
                 <input id='submit' type='submit' value={'Add/Edit'} />
@@ -90,7 +90,6 @@ const Other = () => {
         document.getElementById('heading').value = header;
         document.getElementById('otherTextBox').value = other;
     }
-
 
     return ( 
         <div id='skills-form'>

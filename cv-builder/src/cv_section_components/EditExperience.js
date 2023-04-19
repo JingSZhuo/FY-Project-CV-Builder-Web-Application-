@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 
 /* PACKAGES */
 import ReactQuill from 'react-quill';
+import DOMPurify from 'dompurify';
 
 const EditExperience = () => {
 
@@ -39,7 +40,6 @@ const EditExperience = () => {
         ],
     }
 
-
     /* Read Experience Array from firebase DB*/
     function ReadFromDB () {
         onSnapshot(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), (doc) => {
@@ -56,11 +56,11 @@ const EditExperience = () => {
 
     async function handleSubmitEducation (event) {
         event.preventDefault();
-        const JobTitle = document.getElementById("jobtitle").value
-        const city = document.getElementById("city").value
-        const company = document.getElementById("company").value
-        const startdate = document.getElementById("startdate").value
-        const enddate = document.getElementById("enddate").value
+        const JobTitle = DOMPurify.sanitize(document.getElementById("jobtitle").value);
+        const city = DOMPurify.sanitize(document.getElementById("city").value);
+        const company = DOMPurify.sanitize(document.getElementById("company").value);
+        const startdate = DOMPurify.sanitize(document.getElementById("startdate").value);
+        const enddate = DOMPurify.sanitize(document.getElementById("enddate").value);
         //Editing the specified element in the useState Array and then uploading the newely-updated array to firebase.
         Experience[index] = {
             JobTitle: JobTitle,
@@ -101,7 +101,7 @@ const EditExperience = () => {
                     <input id='enddate' type='date' name='enddate' />
                     <br></br>
                     <br></br>
-                    <ReactQuill theme='snow' modules={modules} value={text} onChange={handleTextChange} /> 
+                    <ReactQuill theme='snow' modules={modules} value={DOMPurify.sanitize(text)} onChange={handleTextChange} /> 
                     <br></br>
                     <br></br>
                     <input id='submit' type='submit' value={'Edit'} />

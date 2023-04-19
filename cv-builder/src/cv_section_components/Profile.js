@@ -7,14 +7,16 @@ import db from '../firebase';
 import { doc,  updateDoc, onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
+/* NPM PACKAGES */
+import DOMPurify from 'dompurify';
 
 /* SUBMIT FORM FUNCTION */
 async function handleSubmit (event) {     
     event.preventDefault();
-    const FName = document.getElementById("fName").value;
-    const LName = document.getElementById("lName").value;
-    const Email = document.getElementById("Email").value;
-    const Contact = document.getElementById("ContactNumber").value;
+    const FName = DOMPurify.sanitize(document.getElementById("fName").value);
+    const LName = DOMPurify.sanitize(document.getElementById("lName").value);
+    const Email = DOMPurify.sanitize(document.getElementById("Email").value);
+    const Contact = DOMPurify.sanitize(document.getElementById("ContactNumber").value);
     try{
         if(FName.trim() === "") throw new Error("Cannot be empty"); 
         if (isNaN(Contact) || Contact.trim() === "") throw new Error("Not a number")
@@ -69,7 +71,6 @@ const Profile = () => {
 
 
     return ( 
-
             <form onSubmit={handleSubmit}>
                 <h2>Profile Summary</h2>
                 <br></br>
@@ -85,9 +86,8 @@ const Profile = () => {
                 <input id='ContactNumber' type={"number"} placeholder='Contact Number' name='contact_number' />
                 <br></br>
                 <br></br> 
-                <input type={"submit"} value={"Add-Profile"} data-testid="submit"/>
+                <input type={"submit"} value={"Add/Change"} data-testid="submit"/>
             </form>
-
      );
 }
  

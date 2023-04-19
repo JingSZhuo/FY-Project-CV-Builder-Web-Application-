@@ -9,8 +9,9 @@ import { arrayUnion, doc, updateDoc, onSnapshot } from 'firebase/firestore';
 /* REACT */
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import DOMPurify from 'dompurify';
 
+/* NPM PACKAGES */
+import DOMPurify from 'dompurify';
 import ReactQuill from 'react-quill';
 
 function AddExperience () {
@@ -35,11 +36,11 @@ function AddExperience () {
     /* Adds to Database + adds onto array */
     async function handleSubmitEducation (event) {
         event.preventDefault();
-        const JobTitle = document.getElementById("jobtitle").value
-        const city = document.getElementById("city").value
-        const company = document.getElementById("company").value
-        const startdate = document.getElementById("startdate").value
-        const enddate = document.getElementById("enddate").value
+        const JobTitle = DOMPurify.sanitize(document.getElementById("jobtitle").value);
+        const city = DOMPurify.sanitize(document.getElementById("city").value);
+        const company = DOMPurify.sanitize(document.getElementById("company").value);
+        const startdate = DOMPurify.sanitize(document.getElementById("startdate").value);
+        const enddate = DOMPurify.sanitize(document.getElementById("enddate").value);
         
         await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
             Experience : arrayUnion(
@@ -140,7 +141,7 @@ const Experience = () => {
                 if (!trigger){ 
                     console.log("Cannot randomise");
                 }
-                else { console.log("Randomising Array"); 
+                else { 
                     const randArray = [];
                     //Getting 3 random elements from recommendation array without repeats
                     for (let i=0; i <3; i++) {
@@ -150,8 +151,8 @@ const Experience = () => {
                         recommendation.splice(randomIndex, 1);
                     }
                     setRecommendationRandomized(randArray);
+                    console.log("Randomised Array"); 
                 }
-
             });
         }
     }
@@ -190,7 +191,7 @@ const Experience = () => {
                                 <p>{data['JobTitle'] + " - " + data['Company'] }</p>
                                 <p> {data['StartDate'] + " - " + data['EndDate']} </p>
                                 <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(data['Description'] )}} ></div>
-                                <Link to={`/editexperience/${index}`} state={{ identifier: `${index}` }}>Edit Experience</Link>
+                                <Link to={`/editexperience/${index}`} state={{ identifier: `${index}` }}>Edit Experience {index}</Link>
                                 <hr></hr>
                             </div>
                         )

@@ -63,6 +63,10 @@ const ProfileSummary = () => {
             { nextComponent >= 4 ? <button onClick={PreviousComponent} >Back</button> : null }
             { nextComponent === 4 ? <button >Finish (Add Function)</button> : null }
 
+            {/* FINAL TEMPLATE */}
+
+            { nextComponent === 5 ? null : null }
+
 
         </div>
      );

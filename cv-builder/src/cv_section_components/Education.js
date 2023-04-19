@@ -9,10 +9,10 @@ import { arrayUnion, doc, updateDoc, onSnapshot } from 'firebase/firestore';
 /* REACT  */
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import DOMPurify from 'dompurify';
 
-/* PACKAGES */
+/* NPM PACKAGES */
 import ReactQuill from 'react-quill';
+import DOMPurify from 'dompurify';
 
 //* Add Education to Database */
 
@@ -25,7 +25,6 @@ function AddEducation () {
             [{ header: [1, 2, 3, 4, false]}],
             ['bold', 'italic', 'underline'],
             [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            //[{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
             [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
         ],
     }
@@ -39,11 +38,11 @@ function AddEducation () {
     /* Adds to Database + adds onto array */
     async function handleSubmitEducation (event) {
         event.preventDefault();
-        const Institution = document.getElementById("institution").value
-        const city = document.getElementById("city").value
-        const course = document.getElementById("course").value
-        const startdate = document.getElementById("startdate").value
-        const enddate = document.getElementById("enddate").value
+        const Institution = DOMPurify.sanitize(document.getElementById("institution").value);
+        const city = DOMPurify.sanitize(document.getElementById("city").value);
+        const course = DOMPurify.sanitize(document.getElementById("course").value);
+        const startdate = DOMPurify.sanitize(document.getElementById("startdate").value);
+        const enddate = DOMPurify.sanitize(document.getElementById("enddate").value);
 
         await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
             Education : arrayUnion(
@@ -96,12 +95,8 @@ function AddEducation () {
                 <br></br>
                 <br></br>
             </form>
-        </div>
-
-                    
-       
+        </div>  
     )
-
 }
 
 const Education = () => {
@@ -139,7 +134,7 @@ const Education = () => {
                                 <p>{data['Institution'] + " - " + data['Course'] }</p>
                                 <p> {data['StartDate'] + " - " + data['EndDate']} </p>
                                 <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(data['Description']) }}/>
-                                <Link to={`/editeducation/${index}`} state={{ identifier: `${index}` }}>Edit Education</Link>
+                                <Link to={`/editeducation/${index}`} state={{ identifier: `${index}` }}>Edit Education {index}</Link>
                                 <hr></hr>
                             </div>
                         )

@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 
 /* PACKAGES */
 import ReactQuill from 'react-quill';
+import DOMPurify from 'dompurify';
 
 const EditEducation = () => {
 
@@ -55,11 +56,11 @@ const EditEducation = () => {
     /*2. Modify education state variable (Array) and then updates it to firebase -> as Firebase does not allow modification of specfic index element - have to update on client side*/
     async function handleSubmitEducation (event) {
         event.preventDefault();
-        const institution = document.getElementById("institution").value
-        const city = document.getElementById("city").value
-        const course = document.getElementById("course").value
-        const startdate = document.getElementById("startdate").value
-        const enddate = document.getElementById("enddate").value
+        const institution = DOMPurify.sanitize(document.getElementById("institution").value);
+        const city = DOMPurify.sanitize(document.getElementById("city").value);
+        const course = DOMPurify.sanitize(document.getElementById("course").value);
+        const startdate = DOMPurify.sanitize(document.getElementById("startdate").value);
+        const enddate = DOMPurify.sanitize(document.getElementById("enddate").value);
         /*3. Modify useState array's specific element */
         Education[index] = {
             Institution: institution,
@@ -99,7 +100,7 @@ const EditEducation = () => {
                 <input id='enddate' type='date' name='enddate' />
                 <br></br>
                 <br></br>
-                <ReactQuill theme='snow' modules={modules} value={text} onChange={handleTextChange} /> 
+                <ReactQuill theme='snow' modules={modules} value={DOMPurify.sanitize(text)} onChange={handleTextChange} /> 
                 <br></br>
                 <br></br>
                 <input id='submit' type='submit' value={'Edit'} />
