@@ -7,6 +7,7 @@ import db from '../firebase';
 import { arrayUnion, doc, updateDoc, onSnapshot } from 'firebase/firestore';
 
 /* REACT  */
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -60,7 +61,7 @@ function AddEducation () {
             });
             alert("Submitted");
         } catch (error) {
-            alert("Rejected");
+            alert("Rejected!")
         }
     }
 
@@ -90,12 +91,15 @@ function AddEducation () {
                 </div>
                 <br></br>
                 <br></br>
-                <input id='submit' type={"submit"} value={'Add'} data-testid="submitedu" />
+                <input id='submit' type={"submit"} value={'Add'} data-testid="submit-edu" />
                 <br></br>
                 <br></br>
             </form>
-
     )
+}
+
+const generateKey = (index) => {
+    return index;
 }
 
 const Education = () => {
@@ -112,15 +116,12 @@ const Education = () => {
             console.log(doc.data()['Education']);
             const educationObject = doc.data()['Education'];
             setEducation(educationObject);
+            console.log(education)
         });
-    }
-    
-    function generateKey(index) {
-        return index;
     }
 
     return ( 
-        <div>
+        <div data-testid="list-edu">
             <h2>Education</h2>
             <br></br>
             <AddEducation/>
@@ -129,7 +130,7 @@ const Education = () => {
                 {
                     education?.map((data, index) => {
                         return(
-                            <div key={generateKey(index)}>
+                            <div key={generateKey(index)} >
                                 <p>{data['Institution'] + " - " + data['Course'] }</p>
                                 <p> {data['StartDate'] + " - " + data['EndDate']} </p>
                                 <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(data['Description']) }}/>
@@ -144,5 +145,4 @@ const Education = () => {
     );
 }
 
-export { AddEducation };
-export default Education;
+export { AddEducation, Education, generateKey };

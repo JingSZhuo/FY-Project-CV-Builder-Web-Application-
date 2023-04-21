@@ -32,7 +32,6 @@ function AddExperience () {
         console.log(text)
     }
 
-
     /* Adds to Database + adds onto array */
     async function handleSubmitEducation (event) {
         event.preventDefault();
@@ -54,26 +53,21 @@ function AddExperience () {
                     }
             ) 
         });
+        return true;
     }
 
     return(
         <div id='experience-form' >
-            <head>
-                <meta charSet='utf-8'></meta>
-                <script>
-                    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"/>
-                </script>
-            </head>
 
             <form onSubmit={handleSubmitEducation}>
 
-                <input id='jobtitle' type='text' placeholder='job title' name='jobtitle'/>
+                <input id='jobtitle' type='text' placeholder='job title' name='jobtitle' data-testid="text-input"/>
                 <br></br>
                 <br></br>
-                <input id='city' type='text' placeholder='city' name='city'/>
+                <input id='city' type='text' placeholder='city' name='city' data-testid="text-input"/>
                 <br></br>
                 <br></br>
-                <input id='company' type='text' placeholder='company' name='company' />
+                <input id='company' type='text' placeholder='company' name='company' data-testid="text-input"/>
                 <br></br>
                 <br></br>
                 <p>Start date</p>
@@ -125,10 +119,10 @@ const Experience = () => {
 
         //Conditional -> as jobrole / yearExp is still being updated -> to prevent rendering and empty path error.
         if(jobrole === "" || yearExp === ""){
-            console.log("loading job role/yearExp..");
+            //console.log("loading job role/yearExp..");
         }
         else {
-            console.log("loaded job role/yearExp...");
+            //console.log("loaded job role/yearExp...");
             //use user questionnaire answers to load appropriate dataset recommendation
             onSnapshot(doc(db, "JobRoles", jobrole), (doc) => {
                 //console.log(doc.data()[`${yearExp}`]);
@@ -156,10 +150,6 @@ const Experience = () => {
             });
         }
     }
-        
-    function generateKey(index) {
-        return index;
-    }
 
     return ( 
         <div>
@@ -171,7 +161,6 @@ const Experience = () => {
                 <h2>Here are some suggestions</h2>
                 {
                     recommendationRandomized?.map((data, index) => {
-                        
                         return(
                             <div key={generateKey(index)}>
                                 <ul>
@@ -187,7 +176,7 @@ const Experience = () => {
                 {
                     experience?.map((data, index) => {
                         return(
-                            <div key={generateKey(index)}>
+                            <div key={generateKey(index)} data-testid="list">
                                 <p>{data['JobTitle'] + " - " + data['Company'] }</p>
                                 <p> {data['StartDate'] + " - " + data['EndDate']} </p>
                                 <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(data['Description'] )}} ></div>
@@ -201,5 +190,9 @@ const Experience = () => {
         </div>
     );
 }
- 
-export default Experience;
+
+function generateKey(index) {
+    return index;
+}
+
+export { AddExperience, Experience, generateKey };

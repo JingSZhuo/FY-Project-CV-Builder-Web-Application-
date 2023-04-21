@@ -2,15 +2,13 @@
 import '../main.scss';
 import '../reset.css';
 
-/* FIREBASE */
-// import db from '../firebase';
+/* REACT */
 import { useState } from 'react';
-// import { doc, updateDoc } from 'firebase/firestore';
 
 /* COMPONENTS */
 import Profile from './Profile';
-import Education from './Education';
-import Experience from './Experience';
+import { Education } from './Education';
+import { Experience } from './Experience';
 import Skills from './Skills';
 import Other from './Other';
 

@@ -33,6 +33,8 @@ const QuestionOne = () => {
                 <option value="null" > -- </option>
                 <option value="Finance" >Accounting and Finance</option>
                 <option value="SoftwareEngineer" >Software and IT</option>
+                <option value="Admin" >Administration</option>
+                <option value="Data" >Data Engineer</option>
             </select>
             <br></br>
         </section>
