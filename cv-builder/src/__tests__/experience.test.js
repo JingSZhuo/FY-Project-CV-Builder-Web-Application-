@@ -12,11 +12,9 @@ describe('Experience Component renders correctly', () => {
     });
 
     test('Experience Component rendered properly', () => {
-        const testFunction = jest.fn();
         render(<Experience/>);
         })
     test('AddExperience Component rendered properly', () => {
-        const testFunction = jest.fn();
         render(<AddExperience/>);
         })
 
@@ -28,13 +26,27 @@ describe('Experience Component renders correctly', () => {
     }); 
 });
 
-describe('test the validity of input fields', () => {
+describe('test the rendering of input fields', () => {
 
-    test('Company name field', () => {
+    test('all text-fields form', () => {
         render(<AddExperience/>);
         const textInput = screen.getAllByTestId('text-input');
         expect(textInput[0]).toBeInTheDocument();
         expect(textInput[1]).toBeInTheDocument();
         expect(textInput[2]).toBeInTheDocument();
+        expect(textInput[3]).toBeInTheDocument();
     });
+
+    test('all date-fields form', () => {
+        render(<AddExperience/>);
+        const dateInput = screen.getAllByTestId('date-input');
+        expect(dateInput[0]).toBeInTheDocument();
+        expect(dateInput[1]).toBeInTheDocument();
+    });
+
+    test('submit input tag rendered', () => {
+        render(<AddExperience/>);
+        const submit = screen.getByTestId('submit-input');
+        expect(submit).toBeInTheDocument();
+    })
 });

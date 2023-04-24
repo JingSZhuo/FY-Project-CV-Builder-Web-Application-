@@ -51,16 +51,18 @@ const ModernTemplateModel = () => {
     }
 
     return ( 
-        <div className='cv-preview'>
-            <div className='template'>
+        <div className='cv-preview' id='cv-preview'>
+            <div className='template' id='template' >
                 <div className='flex-outer'>
-                    <div className='left-side'>
-                        <h2>Profile</h2>
-                        <p>{profile['FName'] + " " + profile['LName']}</p>
-                        <p>{profile['Email']}</p>
-                        <p>{profile['Contact']}</p>
+                    <div className='left-side' >
+                        <h2 style={{fontSize: '1rem'}}>Profile</h2>
+                        <p style={{fontSize: '0.7rem'}} >{profile['FName'] + " " + profile['LName']}</p>
+                        <br></br>
+                        <p style={{fontSize: '0.5rem'}} >{profile['Email']}</p>
+                        <br></br>
+                        <p style={{fontSize: '0.7rem'}}>{profile['Contact']}</p>
                     </div>
-                    <div className='right-side'>
+                    <div className='right-side' >
                         <div>
                             <h2>Education</h2>
                             {

@@ -71,19 +71,19 @@ function AddExperience () {
                 <br></br>
                 <br></br>
                 <p>Start date</p>
-                <input id='startdate' type='date' name='startdate' />
+                <input id='startdate' type='date' name='startdate' data-testid="date-input"/>
                 <br></br>
                 <br></br>
                 <p>End date</p>
-                <input id='enddate' type='date' name='enddate' />
+                <input id='enddate' type='date' name='enddate' data-testid="date-input"/>
                 <br></br>
                 <br></br>
-                <div style={{backgroundColor: 'white', width:"80%"}}>
+                <div style={{backgroundColor: 'white', width:"80%"}} data-testid="text-input">
                     <ReactQuill theme='snow' modules={modules} value={text} onChange={handleTextChange} /> 
                 </div>
                 <br></br>
                 <br></br>
-                <input id='submit' type='submit' value={'Add'} />
+                <input id='submit' type='submit' value={'Add'} data-testid="submit-input"/>
                 <br></br>
                 <br></br>
             </form>

@@ -12,7 +12,7 @@ import DOMPurify from 'dompurify';
 
 const Profile = () => {
 
-    const [profile , setProfile] = useState([]);
+    const [profile, setProfile] = useState([]);
     const [trigger, setTrigger] = useState('false');
 
     useEffect(() => {
@@ -30,7 +30,7 @@ const Profile = () => {
 
     function setValueFromDatabase() {
         //console.log(profile);
-        if (profile === undefined) {
+        if ((profile === undefined)){
             //Simplify this??
             console.log("Empty profile")
             document.getElementById('fName').value = "";
@@ -42,7 +42,7 @@ const Profile = () => {
             document.getElementById('lName').value = profile['LName'];
             document.getElementById('Email').value = profile['Email'];
             document.getElementById('ContactNumber').value = profile['Contact'];
-            //console.log("Values set")
+            console.log("Values set")
         }
     }
 
@@ -75,7 +75,7 @@ const Profile = () => {
             <form onSubmit={handleSubmit}>
                 <h2>Profile Summary</h2>
                 <br></br>
-                <input id='fName' type={"text"} placeholder='First Name' name='fName'/>
+                <input id='fName' type={"text"} placeholder='First Name' name='fName' data-testid="f-name"/>
                 <br></br>
                 <br></br>
                 <input id='lName' type={"text"} placeholder='Last Name' name='lName'/>

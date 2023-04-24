@@ -11,11 +11,13 @@ import { Education } from './Education';
 import { Experience } from './Experience';
 import Skills from './Skills';
 import Other from './Other';
+import { useNavigate } from 'react-router-dom';
 
 
 const ProfileSummary = () => {
 
     const [nextComponent,  triggerNextComponent] = useState(0);
+    const navigate = useNavigate();
 
     function NextComponent () {
         triggerNextComponent(a => a + 1);
@@ -66,15 +68,9 @@ const ProfileSummary = () => {
             { nextComponent === 4 ? <Other/> : null }
 
             { nextComponent >= 4 ? <button onClick={PreviousComponent} >Back</button> : null }
-            { nextComponent === 4 ? <button >Finish (Add Function)</button> : null }
-
-            {/* FINAL TEMPLATE */}
-
-            { nextComponent === 5 ? null : null }
-
-
+            { nextComponent === 4 ? <button onClick={() => { navigate('/preview-temaplate'); }}>Finish</button> : null }
         </div>
      );
 }
- 
+
 export default ProfileSummary;

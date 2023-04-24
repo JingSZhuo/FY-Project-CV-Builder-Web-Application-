@@ -13,6 +13,7 @@ import BaseTemplate from './pages/baseTemplate';
 import PreviewTemplate from './pages/previewTemplate';
 import EditEducation from './cv_section_components/EditEducation';
 import EditExperience from './cv_section_components/EditExperience';
+import EndSurvey from './pages/endSurvey';
 
 /*REACT ROUTER ROUTES*/
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -25,6 +26,7 @@ root.render(
       <Route path='/preview-temaplate' element={ <PreviewTemplate/> } />
       <Route path='/editeducation/:id' element={ <EditEducation/> } />
       <Route path='/editexperience/:id' element={ <EditExperience/> } />
+      <Route path='/surveyCV' element={ <EndSurvey/> }/>
     </Routes>
   </BrowserRouter>
 );
