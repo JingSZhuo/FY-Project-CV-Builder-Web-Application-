@@ -30,24 +30,17 @@ function GetAnswerForQ2 () {                                               //Get
 const QuestionTwo = () => {
     return ( 
 
-        <section>
-
-            <div>
-                <h2>Q2</h2>
+        <section className='quiz-component-center'>
+            <br></br>
+            <div className='questionnaire-header'>
+                <h3>Which one best describes you experience level for this sector?</h3>
             </div>
-
             <br></br>
-            <label>How many years of experience do you have in this field?</label>
-            <br></br>
-            <form onSubmit={(e) => {e.preventDefault()}} id='question_two'>
-                <input type={"radio"} id='less-than-one' name='experience' value="level_one" onChange={GetAnswerForQ2} />
-                <label>Less than 1 year</label>
-                <input type={"radio"} id='one-two-three' name='experience' value="level_two" onChange={GetAnswerForQ2}/>
-                <label>More than 1 year</label>
-                {/* <input type={"radio"} id='three-plus' name='experience' value="three" onChange={GetAnswerForQ2}/>
-                <label>3+ years</label> */}
-
-                {/* <input type="submit" onClick={DirectToTemplate}/> */}
+            <form onSubmit={(e) => {e.preventDefault()}} id='question_two' className='form-custom'>
+                <input className='radio-button-hide' type={"radio"} id='less-than-one' name='experience' value="level_one" onChange={GetAnswerForQ2} />
+                <label className='radio-button' for={"less-than-one"}>Less than 1 year</label>
+                <input className='radio-button-hide' type={"radio"} id='one-two-three' name='experience' value="level_two" onChange={GetAnswerForQ2}/>
+                <label className='radio-button' for={"one-two-three"}>More than 1 year</label>
             </form>
         </section>
      );

@@ -61,6 +61,13 @@ const ModernTemplateModel = () => {
                         <p style={{fontSize: '0.5rem'}} >{profile['Email']}</p>
                         <br></br>
                         <p style={{fontSize: '0.7rem'}}>{profile['Contact']}</p>
+
+                        <br></br>
+                        <br></br>
+                        <div>
+                        <h2>Skills</h2>
+                            <div className='fontsize-test' dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(skills) }}/>
+                        </div>
                     </div>
                     <div className='right-side' >
                         <div>
@@ -70,9 +77,9 @@ const ModernTemplateModel = () => {
 
                                     return(
                                         <div key={generateKey(index)}>
-                                            <p>{data['Institution'] + " - " + data['Course'] }</p>
-                                            <p> {data['StartDate'] + " - " + data['EndDate']} </p>
-                                            <div dangerouslySetInnerHTML={{__html: data['Description'] }} ></div>
+                                            <p style={{fontSize: '0.7rem'}}>{data['Institution'] + " - " + data['Course'] }</p>
+                                            <p style={{fontSize: '0.45rem'}}> {data['StartDate'] + " - " + data['EndDate']} </p>
+                                            <div style={{fontSize: '0.6rem'}} dangerouslySetInnerHTML={{__html: data['Description'] }} ></div>
                                             <hr></hr>
                                             {/* ADD EDIT BUTTON - PASS PROPS TO COMPONENT? */}
                                         </div>
@@ -88,10 +95,10 @@ const ModernTemplateModel = () => {
 
                                     return(
                                         <div key={generateKey(index)}>
-                                            <p>{data['JobTitle'] + " - " + data['Company'] }</p>
-                                            <p> {data['StartDate'] + " - " + data['EndDate']} </p>
+                                            <p style={{fontSize: '0.7rem'}}>{data['JobTitle'] + " - " + data['Company'] }</p>
+                                            <p style={{fontSize: '0.45rem'}}> {data['StartDate'] + " - " + data['EndDate']} </p>
                                             {/* <p>{data['Description']}</p> */}
-                                            <div dangerouslySetInnerHTML={{__html: data['Description'] }} ></div>
+                                            <div style={{fontSize: '0.6rem'}} dangerouslySetInnerHTML={{__html: data['Description'] }} ></div>
                                             <hr></hr>
                                             {/* ADD EDIT BUTTON - PASS PROPS TO COMPONENT? */}
                                         </div>
@@ -99,13 +106,10 @@ const ModernTemplateModel = () => {
                                 })
                             }
                         </div>
-                        <div>
-                            <h2>Skills</h2>
-                            <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(skills) }}/>
-                        </div>
+                        <br></br>
                         <div>
                             <h2>{otherHeader}</h2>
-                            <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(other) }}/>
+                            <div className='fontsize-test' dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(other) }}/>
                         </div>
                     </div>
                 </div>

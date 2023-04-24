@@ -32,7 +32,7 @@ const PreviewTemplate = () => {
 
         console.log(offsetWidth, offsetHeight);
 
-        const doc = new jsPDF('p', 'px', [offsetWidth, offsetHeight]);
+        const doc = new jsPDF('p', 'px', [offsetWidth, offsetHeight+1]);
         const getComponentID = document.getElementById('template');
        
         doc.html(getComponentID, {
@@ -51,7 +51,7 @@ const PreviewTemplate = () => {
     
     
             <section id='canvas' className='section1'>
-                <h1 className='header'>Main Page</h1>
+                <h1 className='header'>Preview</h1>
                 <br></br>
                 <section className='preview'>
                     <ModernTemplateModel/>

@@ -21,21 +21,21 @@ const QuestionOne = () => {
 
     return ( 
 
-        <section>
-            <div>
-                <h2>Q1</h2>
+        <section className='quiz-component-center'>
+            <br></br>
+            <div className='questionnaire-header'>
+                <h3>Which sector do you want to create a CV for?</h3>
             </div>
-
             <br></br>
-            <label>Which sector do you want to create a CV for?</label>
-            <br></br>
-            <select name='role' id='question_one' onChange={UpdateDatabase}>
-                <option value="null" > -- </option>
-                <option value="Finance" >Accounting and Finance</option>
-                <option value="SoftwareEngineer" >Software and IT</option>
-                <option value="Admin" >Administration</option>
-                <option value="Data" >Data Engineer</option>
-            </select>
+            <div className='custom-select'>
+                <select name='role' id='question_one' onChange={UpdateDatabase}>
+                    <option value="null" > Please select... </option>
+                    <option value="Finance" >Accounting and Finance</option>
+                    <option value="SoftwareEngineer" >Software and IT</option>
+                    <option value="Admin" >Administration</option>
+                    <option value="Data" >Data Engineer</option>
+                </select>
+            </div>
             <br></br>
         </section>
     );

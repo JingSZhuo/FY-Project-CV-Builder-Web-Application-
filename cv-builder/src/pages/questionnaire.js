@@ -33,7 +33,7 @@ const QuestionnairePage = () => {
         <div>
 
             <div className='header-position'>
-                <h1>Questionnaire</h1>
+                <h2 className='header' >CV Assistant</h2>
             </div>
             {/* conditonal rendering */}
             <section>
@@ -53,7 +53,6 @@ const QuestionnairePage = () => {
             <div>
                 <br></br>
                 <Link to="/preview-temaplate">Template Preview</Link>
-                <br></br>
                 <br></br>
             </div>
         </div>
