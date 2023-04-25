@@ -72,22 +72,32 @@ const Profile = () => {
 
 
     return ( 
-            <form onSubmit={handleSubmit}>
-                <h2>Profile Summary</h2>
+            <form onSubmit={handleSubmit} id='profile-form'>
+                <h2 className='form-component-subheader' >Profile Summary</h2>
                 <br></br>
-                <input id='fName' type={"text"} placeholder='First Name' name='fName' data-testid="f-name"/>
+                <div>
+                    <label for={"fName"}>First Name</label>
+                    <input id='fName' type={"text"} placeholder='First Name' name='fName' data-testid="f-name"/>
+                </div>
                 <br></br>
+                <div>
+                    <label for={"lName"}>Last Name</label>
+                    <input id='lName' type={"text"} placeholder='Last Name' name='lName'/>
+                </div>
                 <br></br>
-                <input id='lName' type={"text"} placeholder='Last Name' name='lName'/>
-                <br></br>
-                <br></br>
-                <input id='Email' type={"email"} placeholder='Email' name='email' />
-                <br></br>
+                <div>
+                    <label for={"Email"}>Email</label>
+                    <input id='Email' type={"email"} placeholder='Email' name='email' />
+                </div>
                 <br></br> 
-                <input id='ContactNumber' type={"number"} placeholder='Contact Number' name='contact_number' />
-                <br></br>
+                <div>
+                    <label for={"ContactNumber"}>Contact No.</label>
+                    <input id='ContactNumber' type={"number"} placeholder='Contact Number' name='contact_number' />
+                </div>
                 <br></br> 
-                <input type={"submit"} value={"Add/Change"} data-testid="submit"/>
+                <section style={{textAlign: 'right'}}>
+                    <input type={"submit"} value={"Add/Change"} className='submit-button' data-testid="submit"/>
+                </section>
             </form>
      );
 }

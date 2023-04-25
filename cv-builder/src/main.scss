@@ -1,5 +1,24 @@
-$background-color: rgba(66, 133, 56, 0.76);
+/* GENERAL */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 $text-color: black ;
+
+@mixin flexDisplayJustify($display, $direction, $justify-content) {
+  display: $display;
+  flex-direction: $direction;
+  justify-content: $justify-content;
+}
+
+@mixin widthHeight($width, $height){
+  width: $width;
+  height: $height;
+}
+
+/* BASEPAGE - baseTemplage.js*/
 
 .main {
   min-height: 100vh;
@@ -8,11 +27,19 @@ $text-color: black ;
   background-attachment: fixed;
 }
 
-.navbar {
+.main-body-template-page{
+  min-height: 90%;
+  height: auto;
+  padding: 0 5% 0 5%;
+  @include flexDisplayJustify(flex, row, flex-start)
+}
+
+/* NAVBAR */
+
+nav.navbar {
   background-image: linear-gradient(90deg, rgb(205, 255, 216) 0%, rgb(148, 185, 255) 100%);
   height: 58px;
-  display: flex;
-  flex-direction: row;
+  @include flexDisplayJustify(flex, row, flex-start)
 }
 
 .navbar-buttons{
@@ -20,7 +47,6 @@ $text-color: black ;
   text-decoration: none;
   color: black;
 }
-
 .navbar-buttons:hover{
   background-image: linear-gradient(180deg, #cdffd8 0%, #94b9ff 100%);
   cursor: pointer;
@@ -28,26 +54,28 @@ $text-color: black ;
 
 .intro{
   padding: 20%;
+  h1, p {
+    text-align: center;
+  }
 }
 
-.header{
-  text-align: center;
+h1.header, h2.header{
   font-size: 4em;
   text-shadow: 2px 4px 5px #565555;
-}
-
-.subheader{
   text-align: center;
+} 
+
+p.subheader{
   font-size: 1.5em;
 }
 
-/* */
-
-/*QUESTIONNAIRE PAGE CSS*/
+/*QUESTIONNAIRE PAGE CSS - questionnaire.js file*/
 
 .header-position{
   padding-top: 10%;
 }
+
+/* quiz_1.js file*/
 
 .questionnaire-header{
   background-color: rgba(194, 255, 114, 0.341);
@@ -57,7 +85,7 @@ $text-color: black ;
   width: 96%
 }
 
-.custom-select{
+div.custom-select{
   position: relative;
 }
 
@@ -71,17 +99,16 @@ select{
   color: #333;
 }
 
+/*quiz_2.js files*/
+
 .quiz-component-center{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  @include flexDisplayJustify(flex, column, center)
+
 }
 
 .form-custom{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  @include flexDisplayJustify(flex, row, center);
   align-items: center;
 }
 
@@ -89,7 +116,7 @@ select{
   display: none;
 }
 
-.radio-button{
+label.radio-button{
   padding: 60px 20px;
   margin: 0 20px;
   background-color: rgba(15, 141, 251, 0.641);
@@ -106,30 +133,24 @@ input[type="radio"]:checked + label.radio-button{
   border-color: rgba(194, 255, 114, 0.59);
 }
 
-/*BASE TEMPLATE*/
+/*FORM SECTION - formSection.js*/
 
-.main-body-template-page{
-  min-height: 90%;
-  height: auto;
-  padding: 0 5% 0 5%;
-  display: flex;
-  flex-direction: row;
-}
-
-.profile-form {
-  //width: 50%;
-  min-height: 80vh;
-}
-
-.profile-form{
+div.form-section{
   width: 50%;
   margin-right: 10em;
+  min-height: 80vh;
+
+  button{
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    padding: 10px;
+    background: linear-gradient(125deg, rgb(90, 232, 246) 0%, rgb(73, 255, 18) 100%);
+    color: white;
+  }
 }
 
-// .cv-preview{
-//   position: absolute;
-//   right: 10%;
-// }
+/* template_component -> Modern.js file*/
 
 .template{
   display: flex;
@@ -141,25 +162,60 @@ input[type="radio"]:checked + label.radio-button{
 
 .flex-outer{
   flex: 1;
-  display: flex;
-  flex-direction: row;
+  @include flexDisplayJustify(flex, row, flex-start);
   min-width: 380px;
-  //height: 100%;
 }
 
 .left-side{
   width: 35%;
-  //height: 100%;
   background-color: aqua;
   color: $text-color;
 }
 .right-side{
   width: 65%;
-  //min-height: 80vh;
-  //height: 80vh;
   background-color: antiquewhite;
   color: $text-color;
 }
+
+/*PROFILE CSS*/
+
+/*FORM SHARED CSS - Profile.js, education.js*/
+.form-component-subheader{
+  font-size: 1.5em;
+}
+
+#profile-form div{ 
+  @include flexDisplayJustify(flex, row, flex-start);
+
+  label{
+    margin-right: 30px;
+    width: 30%;
+  }
+
+  input{
+    width: 70%;
+    border-width: 0;
+  }
+}
+#profile-form input[type="submit"]{
+  border: none;
+  border-radius: 20px;
+  text-decoration: none;
+  padding: 10px;
+  background: linear-gradient(125deg, rgb(90, 232, 246) 0%, rgb(73, 255, 18) 100%);
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /*PREVIEW PAGE CSS*/
 

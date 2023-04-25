@@ -1,11 +1,13 @@
 /* CSS FILES */ 
-import { Link } from 'react-router-dom';
 import '../main.scss';
 import '../reset.css';
 
 /* COMPONENTS */
 import ModernTemplateModel from '../template_components/Modern';
 import jsPDF from 'jspdf';
+
+/*  REACT */
+import { Link } from 'react-router-dom';
 
 /* OTHER */
 //import "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"
@@ -46,7 +48,7 @@ const PreviewTemplate = () => {
         <div className="main">
 
             <nav className='navbar'>
-    
+                <Link className='navbar-buttons' to={"/"}>Home</Link>
             </nav>
     
     

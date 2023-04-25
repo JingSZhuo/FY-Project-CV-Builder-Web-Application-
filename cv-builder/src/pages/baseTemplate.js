@@ -5,10 +5,8 @@ import { useEffect } from 'react';
 import '../main.scss';
 import '../reset.css';
 
-/* FIREBASE */
-// import db from '../firebase'
-// import { useNavigate } from 'react-router-dom';
-// import { onSnapshot, doc } from 'firebase/firestore';
+/* REACT */
+import { Link } from 'react-router-dom';
 
 /* COMPONENTS */
 
@@ -25,16 +23,18 @@ const BaseTemplate = () => {
 
         <body className="main">
             <nav className='navbar'>
-
+                <Link className='navbar-buttons' to={"/"}>Home</Link>
             </nav>
 
 
             <section id='canvas' className='section1'>
+                <br></br>
                 <h1 className='header'>Template Page</h1>
+                <br></br>
                             
                 <section className='main-body-template-page'>
                     <FormSection/>
-                    <ModernTemplateModel />
+                    <ModernTemplateModel/>
                 </section>
             </section>
             <br></br>

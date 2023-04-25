@@ -31,7 +31,6 @@ const QuestionnairePage = () => {
     
     return ( 
         <div>
-
             <div className='header-position'>
                 <h2 className='header' >CV Assistant</h2>
             </div>
@@ -50,6 +49,7 @@ const QuestionnairePage = () => {
                     question >= 0 && question < 1?  <button onClick={NextQuestion}>Next</button> : <button onClick={DirectToTemplate}>Done</button>
                 }
             </section>
+            {/* comment out code below when finished */}
             <div>
                 <br></br>
                 <Link to="/preview-temaplate">Template Preview</Link>

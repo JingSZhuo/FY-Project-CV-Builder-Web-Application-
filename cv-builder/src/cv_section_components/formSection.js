@@ -27,7 +27,7 @@ const ProfileSummary = () => {
     }
 
     return ( 
-        <div className='profile-form'>
+        <div className='form-section'>
 
 <           head>
                 <meta charSet='utf-8'></meta>

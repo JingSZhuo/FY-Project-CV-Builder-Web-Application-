@@ -122,7 +122,7 @@ const Education = () => {
 
     return ( 
         <div data-testid="list-edu">
-            <h2>Education</h2>
+            <h2 className='form-component-subheader' >Education</h2>
             <br></br>
             <AddEducation/>
             <br></br>
