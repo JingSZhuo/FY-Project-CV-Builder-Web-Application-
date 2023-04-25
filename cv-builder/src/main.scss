@@ -18,6 +18,19 @@ $text-color: black ;
   height: $height;
 }
 
+.button-css{
+  border: none;
+  border-radius: 20px;
+  text-decoration: none;
+  background: linear-gradient(125deg, rgb(90, 232, 246) 0%, rgb(73, 255, 18) 100%);
+  color: white;
+}
+
+@mixin buttonWidthPaddgin($width, $padding) {
+  width: $width;
+  padding: $padding;
+}
+
 /* BASEPAGE - baseTemplage.js*/
 
 .main {
@@ -83,6 +96,7 @@ p.subheader{
   text-align: center;
   font-size: 1.5em;
   width: 96%
+
 }
 
 div.custom-select{
@@ -141,12 +155,8 @@ div.form-section{
   min-height: 80vh;
 
   button{
-    border: none;
-    border-radius: 20px;
-    text-decoration: none;
-    padding: 10px;
-    background: linear-gradient(125deg, rgb(90, 232, 246) 0%, rgb(73, 255, 18) 100%);
-    color: white;
+    @extend .button-css;
+    @include buttonWidthPaddgin(35%, 10px)
   }
 }
 
@@ -216,16 +226,32 @@ div.form-section{
 }
 
 .cv-form input[type="submit"]{
-  border: none;
-  border-radius: 20px;
-  text-decoration: none;
-  padding: 10px;
-  background: linear-gradient(125deg, rgb(90, 232, 246) 0%, rgb(73, 255, 18) 100%);
-  color: white;
+  @extend .button-css;
+  @include buttonWidthPaddgin(30%, 10px);
 }
 
+.edit-individual-component-div {
+  background: rgba(15, 140, 250, 0.5);
+  padding: 3%;
+  margin-bottom: 15px;
 
+  p, p + a{
+    font-size: 0.7em;
+  }
 
+  a{
+    display: flex;
+    justify-content: center;
+    @extend .button-css;
+    @include buttonWidthPaddgin(15%, 5px);
+  }
+}
+
+.suggestions-container{
+  background: linear-gradient(125deg, rgba(90, 233, 246, 0.749) 0%, rgba(73, 255, 18, 0.563) 100%);
+  padding: 3%;
+  margin-bottom: 15px;
+}
 
 
 
@@ -255,5 +281,6 @@ div.form-section{
 }
 
 .fontsize-test {
+  word-wrap: break-word;
   font-size: 0.6rem;
 }

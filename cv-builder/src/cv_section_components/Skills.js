@@ -48,12 +48,14 @@ function SkillsForm () {
                 </script>
             </head>
 
-            <form onSubmit={handleSubmitFunction}>
-                <h4>Add some skills to highlight</h4>
+            <form onSubmit={handleSubmitFunction} className='cv-form'>
+                <h2>Add some skills to highlight</h2>
                 <br></br>
-                <p>Editing this textbox will replace the old ones..</p>
+                <p style={{fontSize: '0.7em'}}>Editing this textbox will replace the old ones..</p>
                 <br></br>
-                <ReactQuill theme='snow' modules={modules} value={text} onChange={handleTextChange} />
+                <section style={{backgroundColor: 'white', width:"100%"}} data-testid="text-input">
+                    <ReactQuill theme='snow' modules={modules} value={text} onChange={handleTextChange} />
+                </section>
                 <br></br>
                 <br></br>
                 <input id='submit' type='submit' value={'Add/Edit Skills'} />
@@ -81,13 +83,16 @@ const Skills = () => {
 
     return ( 
         <div id='skills-form'>
-            <h1>Skills</h1>
+            <h2 className='form-component-subheader' >Skills</h2>
             <br></br>
             <SkillsForm/>
             <br></br>
             <br></br>
             <h5>Your Skills Listed</h5>
-            <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(skill)}}/>
+            <br></br>
+            <div className='edit-individual-component-div'>
+                <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(skill)}}/>
+            </div>
         </div>
     );
 }

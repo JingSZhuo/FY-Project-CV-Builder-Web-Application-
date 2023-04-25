@@ -99,7 +99,8 @@ function AddEducation () {
                 <br></br>
                 <br></br>
                 <h3>Description</h3>
-                <section style={{backgroundColor: 'white', width:"80%"}}>
+                <br></br>
+                <section style={{backgroundColor: 'white', width:"100%"}}>
                     <ReactQuill theme='snow' modules={modules} value={text} onChange={handleTextChange} /> 
                 </section>
                 <br></br>
@@ -143,12 +144,11 @@ const Education = () => {
                 {
                     education?.map((data, index) => {
                         return(
-                            <div key={generateKey(index)} >
-                                <p>{data['Institution'] + " - " + data['Course'] }</p>
+                            <div key={generateKey(index)} className='edit-individual-component-div'>
+                                <h6>{data['Institution'] + " - " + data['Course'] }</h6>
                                 <p> {data['StartDate'] + " - " + data['EndDate']} </p>
                                 <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(data['Description']) }}/>
-                                <Link to={`/editeducation/${index}`} state={{ identifier: `${index}` }}>Edit Education {index}</Link>
-                                <hr></hr>
+                                <Link to={`/editeducation/${index}`} state={{ identifier: `${index}` }}>Edit {index}</Link>
                             </div>
                         )
                     })

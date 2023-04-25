@@ -50,16 +50,20 @@ function OtherForm () {
                 </script>
             </head>
 
-            <form onSubmit={handleSubmitFunction}>
+            <form onSubmit={handleSubmitFunction} className='cv-form'>
                 <h4>Add a extra section (optional)</h4>
                 <br></br>
-                <h4>Header Title </h4>
-                <input id='heading' type='text' placeholder='Add a header'/>
+                <div className='field-div'>
+                    <label for={"heading"}>Header Title</label>
+                    <input id='heading' type='text' placeholder='Add a header'/>
+                </div>
                 <br></br>
                 <br></br>
                 <p>Editing this textbox will replace the old ones..</p>
                 <br></br>
-                <ReactQuill id='otherTextBox' theme='snow' modules={modules} value={DOMPurify.sanitize(text)} onChange={handleTextChange} />
+                <section style={{backgroundColor: 'white', width:"100%"}} data-testid="text-input">
+                    <ReactQuill id='otherTextBox' theme='snow' modules={modules} value={DOMPurify.sanitize(text)} onChange={handleTextChange} />
+                </section>
                 <br></br>
                 <br></br>
                 <input id='submit' type='submit' value={'Add/Edit'} />

@@ -59,28 +59,42 @@ function AddExperience () {
     return(
         <div id='experience-form' >
 
-            <form onSubmit={handleSubmitEducation}>
-
-                <input id='jobtitle' type='text' placeholder='job title' name='jobtitle' data-testid="text-input"/>
-                <br></br>
-                <br></br>
-                <input id='city' type='text' placeholder='city' name='city' data-testid="text-input"/>
-                <br></br>
-                <br></br>
-                <input id='company' type='text' placeholder='company' name='company' data-testid="text-input"/>
-                <br></br>
-                <br></br>
-                <p>Start date</p>
-                <input id='startdate' type='date' name='startdate' data-testid="date-input"/>
-                <br></br>
-                <br></br>
-                <p>End date</p>
-                <input id='enddate' type='date' name='enddate' data-testid="date-input"/>
-                <br></br>
-                <br></br>
-                <div style={{backgroundColor: 'white', width:"80%"}} data-testid="text-input">
-                    <ReactQuill theme='snow' modules={modules} value={text} onChange={handleTextChange} /> 
+            <form onSubmit={handleSubmitEducation} className='cv-form'>
+                <div className='field-div'>
+                    <label for={"jobtitle"} >Job Title</label>
+                    <input id='jobtitle' type='text' placeholder='job title' name='jobtitle' data-testid="text-input"/>
                 </div>
+                <br></br>
+                <br></br>
+                <div className='field-div'>
+                    <label for={"city"}>City</label>
+                    <input id='city' type='text' placeholder='city' name='city' data-testid="text-input"/>
+                </div>
+                <br></br>
+                <br></br>
+                <div className='field-div'>
+                    <label for={"company"} >Company</label>
+                    <input id='company' type='text' placeholder='company' name='company' data-testid="text-input"/>
+                </div>
+                <br></br>
+                <br></br>
+                <div className='field-div-dates'>
+                    <div>
+                        <label for={"startdate"}>Start Date</label>
+                        <input id='startdate' type='date' name='startdate' data-testid="date-input"/>
+                    </div>
+                    <div>
+                        <label for={"enddate"}>End Date</label>
+                        <input id='enddate' type='date' name='enddate' data-testid="date-input"/>
+                    </div>
+                </div>
+                <br></br>
+                <br></br>
+                <h3>Description</h3>
+                <br></br>
+                <section style={{backgroundColor: 'white', width:"100%"}} data-testid="text-input">
+                    <ReactQuill theme='snow' modules={modules} value={text} onChange={handleTextChange} /> 
+                </section>
                 <br></br>
                 <br></br>
                 <input id='submit' type='submit' value={'Add'} data-testid="submit-input"/>
@@ -153,11 +167,11 @@ const Experience = () => {
 
     return ( 
         <div>
-            <h1>Experience</h1>
+            <h2 className='form-component-subheader' >Experience</h2>
             <br></br>
             <AddExperience/>
             <br></br>
-            <div>
+            <div className="suggestions-container">
                 <h2>Here are some suggestions</h2>
                 {
                     recommendationRandomized?.map((data, index) => {
@@ -176,12 +190,11 @@ const Experience = () => {
                 {
                     experience?.map((data, index) => {
                         return(
-                            <div key={generateKey(index)} data-testid="list">
-                                <p>{data['JobTitle'] + " - " + data['Company'] }</p>
+                            <div key={generateKey(index)} className='edit-individual-component-div' data-testid="list">
+                                <h6>{data['JobTitle'] + " - " + data['Company'] }</h6>
                                 <p> {data['StartDate'] + " - " + data['EndDate']} </p>
                                 <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(data['Description'] )}} ></div>
-                                <Link to={`/editexperience/${index}`} state={{ identifier: `${index}` }}>Edit Experience {index}</Link>
-                                <hr></hr>
+                                <Link to={`/editexperience/${index}`} state={{ identifier: `${index}` }}>Edit {index}</Link>
                             </div>
                         )
                     })

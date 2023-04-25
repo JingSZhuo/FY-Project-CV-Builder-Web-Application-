@@ -96,7 +96,7 @@ const Profile = () => {
                 </div>
                 <br></br> 
                 <section style={{textAlign: 'right'}}>
-                    <input type={"submit"} value={"Add/Change"} className='submit-button' data-testid="submit"/>
+                    <input type={"submit"} value={"Add/Edit"} className='submit-button' data-testid="submit"/>
                 </section>
             </form>
      );
