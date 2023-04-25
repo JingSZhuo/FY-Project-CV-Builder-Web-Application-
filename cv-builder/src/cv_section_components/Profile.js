@@ -72,25 +72,25 @@ const Profile = () => {
 
 
     return ( 
-            <form onSubmit={handleSubmit} id='profile-form'>
+            <form onSubmit={handleSubmit} className='cv-form'>
                 <h2 className='form-component-subheader' >Profile Summary</h2>
                 <br></br>
-                <div>
+                <div className='field-div'>
                     <label for={"fName"}>First Name</label>
                     <input id='fName' type={"text"} placeholder='First Name' name='fName' data-testid="f-name"/>
                 </div>
                 <br></br>
-                <div>
+                <div className='field-div'>
                     <label for={"lName"}>Last Name</label>
                     <input id='lName' type={"text"} placeholder='Last Name' name='lName'/>
                 </div>
                 <br></br>
-                <div>
+                <div className='field-div'>
                     <label for={"Email"}>Email</label>
                     <input id='Email' type={"email"} placeholder='Email' name='email' />
                 </div>
                 <br></br> 
-                <div>
+                <div className='field-div'>
                     <label for={"ContactNumber"}>Contact No.</label>
                     <input id='ContactNumber' type={"number"} placeholder='Contact Number' name='contact_number' />
                 </div>

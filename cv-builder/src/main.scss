@@ -184,8 +184,21 @@ div.form-section{
   font-size: 1.5em;
 }
 
-#profile-form div{ 
+.cv-form .field-div-dates{
+  @include flexDisplayJustify(flex, row, space-between)
+}
+
+.cv-form .field-div{ 
   @include flexDisplayJustify(flex, row, flex-start);
+
+  div{
+    @include flexDisplayJustify(flex, column, flex-start);
+    width: 50%;
+
+    label{
+      width: 50%;
+    }
+  }
 
   label{
     margin-right: 30px;
@@ -197,7 +210,12 @@ div.form-section{
     border-width: 0;
   }
 }
-#profile-form input[type="submit"]{
+
+.cv-form section{
+  @include flexDisplayJustify(flex, column, baseline)
+}
+
+.cv-form input[type="submit"]{
   border: none;
   border-radius: 20px;
   text-decoration: none;

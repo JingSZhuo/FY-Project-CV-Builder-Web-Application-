@@ -67,28 +67,41 @@ function AddEducation () {
 
 
     return(
-            <form onSubmit={handleSubmitEducation}>
-                <input id='institution' type='text' placeholder='school or university' name='institution'/>
+            <form onSubmit={handleSubmitEducation} className='cv-form'>
+                <div className='field-div'>
+                    <label for={"institution"} >Institution</label>
+                    <input id='institution' type='text' placeholder='school or university' name='institution'/>
+                </div>
                 <br></br>
                 <br></br>
-                <input id='city' type='text' placeholder='city' name='city'/>
+                <div className='field-div'>
+                    <label for={"city"} >City</label>
+                    <input id='city' type='text' placeholder='city' name='city'/>
+                </div>
                 <br></br>
                 <br></br>
-                <input id='course' type='text' placeholder='course' name='course' />
+                <div className='field-div'>
+                    <label for={"course"}>Course</label>
+                    <input id='course' type='text' placeholder='course' name='course' />
+                </div>
                 <br></br>
                 <br></br>
-                <p>Start date</p>
-                <input id='startdate' type='date' name='startdate' />
-                <br></br>
-                <br></br>
-                <p>End date</p>
-                <input id='enddate' type='date' name='enddate' />
+                <div className='field-div-dates'>
+                    <div>
+                        <label for={"startdate"}>Start Date</label>
+                        <input id='startdate' type='date' name='startdate' />
+                    </div>
+                    <div>
+                        <label for={"enddate"} >End Date</label>
+                        <input id='enddate' type='date' name='enddate' />
+                    </div>
+                </div>                
                 <br></br>
                 <br></br>
                 <h3>Description</h3>
-                <div style={{backgroundColor: 'white', width:"80%"}}>
+                <section style={{backgroundColor: 'white', width:"80%"}}>
                     <ReactQuill theme='snow' modules={modules} value={text} onChange={handleTextChange} /> 
-                </div>
+                </section>
                 <br></br>
                 <br></br>
                 <input id='submit' type={"submit"} value={'Add'} data-testid="submit-edu" />
