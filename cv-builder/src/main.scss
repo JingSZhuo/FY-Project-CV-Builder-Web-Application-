@@ -38,6 +38,7 @@ $text-color: black ;
   background-image: url('../src/images/poly-blue-bg.jpg') ;
   background-size: 100% 100%;
   background-attachment: fixed;
+  overflow: auto;
 }
 
 .main-body-template-page{
@@ -183,7 +184,7 @@ div.form-section{
 }
 .right-side{
   width: 65%;
-  background-color: antiquewhite;
+  background-color: white;
   color: $text-color;
 }
 
@@ -228,6 +229,7 @@ div.form-section{
 .cv-form input[type="submit"]{
   @extend .button-css;
   @include buttonWidthPaddgin(30%, 10px);
+  cursor: pointer;
 }
 
 .edit-individual-component-div {
@@ -253,20 +255,54 @@ div.form-section{
   margin-bottom: 15px;
 }
 
+.delete-button{
+  @include flexDisplayJustify(flex, row, baseline);
+  width: 50%;
+  margin: 0 auto 20px auto;
+
+  button{
+    border: none;
+    text-decoration: underline;
+    background: none;
+    color: red;
+    cursor: pointer;
+  }
+}
+
+
+/*EDIT PAGES education.js and experience.js*/
 
 
 
 
 
 
-
-
-/*PREVIEW PAGE CSS*/
+/*PREVIEW ( FINAL CV COMPONENT ) PAGE CSS - previewTemplate.js*/
 
 .preview{
   display: flex;
+  flex-direction: row;
   justify-content: center;
 }
+
+.cv-options{
+  @include flexDisplayJustify(flex, column, center);
+  align-items: center;
+  width: 20%;
+
+  a, button{
+    @extend .button-css;
+    @include buttonWidthPaddgin(auto, 15px);
+    margin: 20% 0 20% 0;
+    text-align: center
+  }
+
+  button{
+    height: 100px;
+    cursor: pointer;
+  }
+  
+} 
 
 /*SURVEY CSS*/
 

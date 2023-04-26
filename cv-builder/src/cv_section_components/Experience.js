@@ -41,19 +41,26 @@ function AddExperience () {
         const startdate = DOMPurify.sanitize(document.getElementById("startdate").value);
         const enddate = DOMPurify.sanitize(document.getElementById("enddate").value);
         
-        await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
-            Experience : arrayUnion(
-                    {
-                        JobTitle: JobTitle,
-                        City: city,
-                        Company: company,
-                        StartDate: startdate,
-                        EndDate: enddate,
-                        Description: text, /*replace with value from Quill textbox */
-                    }
-            ) 
-        });
-        return true;
+        try {
+            if(JobTitle === "") throw "Job Title field cannot be empty";
+            if(city === "") throw "City field cannot be empty";
+            if(company === "") throw "Company field cannot be empty";
+            await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
+                Experience : arrayUnion(
+                        {
+                            JobTitle: JobTitle,
+                            City: city,
+                            Company: company,
+                            StartDate: startdate,
+                            EndDate: enddate,
+                            Description: text, /*replace with value from Quill textbox */
+                        }
+                ) 
+            });
+            alert("Added!");
+        } catch (error) {
+            alert(error);
+        }
     }
 
     return(

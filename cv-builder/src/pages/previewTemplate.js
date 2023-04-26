@@ -34,7 +34,7 @@ const PreviewTemplate = () => {
 
         console.log(offsetWidth, offsetHeight);
 
-        const doc = new jsPDF('p', 'px', [offsetWidth, offsetHeight+1]);
+        const doc = new jsPDF('p', 'px', [offsetWidth, offsetHeight+2]);
         const getComponentID = document.getElementById('template');
        
         doc.html(getComponentID, {
@@ -57,9 +57,11 @@ const PreviewTemplate = () => {
                 <br></br>
                 <section className='preview'>
                     <ModernTemplateModel/>
-                </section>
-                <Link to={'/surveyCV'}>Finish</Link>
-                <button onClick={ConvertToPDF}>PDF</button>
+                    <div className='cv-options'>
+                        <button onClick={ConvertToPDF}>Export to PDF</button>
+                        <Link to={'/surveyCV'}>Finish</Link>
+                    </div>
+                </section>   
             </section>
         </div>
      );

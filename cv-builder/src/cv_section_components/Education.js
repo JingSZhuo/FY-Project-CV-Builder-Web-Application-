@@ -46,7 +46,9 @@ function AddEducation () {
         const enddate = DOMPurify.sanitize(document.getElementById("enddate").value);
 
         try {
-            if(Institution === "") throw new Error("Cannot be empty!");
+            if(Institution === "") throw "Institution field cannot be empty";
+            if(city === "") throw "City field cannot be empty";
+            if(course === "") throw "Course field cannot be empty";
             await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
                 Education : arrayUnion(
                         {
@@ -61,7 +63,7 @@ function AddEducation () {
             });
             alert("Submitted");
         } catch (error) {
-            alert("Rejected!")
+            alert(error)
         }
     }
 

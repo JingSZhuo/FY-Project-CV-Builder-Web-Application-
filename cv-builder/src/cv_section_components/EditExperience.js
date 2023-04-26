@@ -8,7 +8,7 @@ import db from '../firebase';
 import { doc, updateDoc, onSnapshot } from 'firebase/firestore';
 
 /* REACT IMPORTS */
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 /* PACKAGES */
@@ -19,6 +19,7 @@ const EditExperience = () => {
 
     /* passing state variable via Link */
     const location = useLocation();
+    const navigate = useNavigate();
 
     /* storing states for reading data and modification */
     const [index] = useState(location.state.identifier);
@@ -74,42 +75,74 @@ const EditExperience = () => {
         await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
             Experience
         });
+        alert("Edited!")
     }
 
-
+    async function DeleteFromArray(){
+        Experience.splice(index, 1);
+        console.log("After", Experience)
+        await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
+            Experience
+        });
+        alert("Deleted");
+        navigate('/cv_template');
+    }
 
     return ( 
-        <div>
-            <div>
-                <h1>Edit</h1>
-                <p>{location.state?.identifier}</p>
-                <form onSubmit={handleSubmitEducation}>
-                    <input id='jobtitle' type='text' placeholder='job title' name='jobtitle'/>
+            <div className='main'>
+                <nav className='navbar'>
+                    <Link className='navbar-buttons' to={"/"}>Home</Link>
+                </nav>
+                <h1 className='form-component-subheader' style={{ marginTop: '20px', textAlign: 'center'}}>Edit Experience {location.state?.identifier}</h1>
+                <form onSubmit={handleSubmitEducation} className='cv-form' style={{width: '50%', margin: '50px auto 0 auto'}}>
+                    <div className='field-div'>
+                        <label for={"jobtitle"}>Job Title</label>
+                        <input id='jobtitle' type='text' placeholder='job title' name='jobtitle'/>
+                    </div>
                     <br></br>
                     <br></br>
-                    <input id='city' type='text' placeholder='city' name='city'/>
+                    <div className='field-div'>
+                        <label for={"city"}>City</label>
+                        <input id='city' type='text' placeholder='city' name='city'/>
+                    </div>
                     <br></br>
                     <br></br>
-                    <input id='company' type='text' placeholder='company' name='company' />
+                    <div className='field-div'>
+                        <label for={"company"}>Company</label>
+                        <input id='company' type='text' placeholder='company' name='company' />
+                    </div>                    
                     <br></br>
                     <br></br>
-                    <p>Start date</p>
-                    <input id='startdate' type='date' name='startdate' />
+                    <div className='field-div-dates'>
+                        <div>
+                            <label for={"startdate"}>Start Date</label>
+                            <input id='startdate' type='date' name='startdate' />
+                        </div>
+                        <div>
+                            <label for={"enddate"}>End Date</label>
+                            <input id='enddate' type='date' name='enddate' />
+                        </div>
+                    </div>
                     <br></br>
                     <br></br>
-                    <p>End date</p>
-                    <input id='enddate' type='date' name='enddate' />
+                    <h3>Description</h3>
                     <br></br>
                     <br></br>
-                    <ReactQuill theme='snow' modules={modules} value={DOMPurify.sanitize(text)} onChange={handleTextChange} /> 
+                    <section style={{backgroundColor: 'white', width:"100%"}}>
+                        <ReactQuill theme='snow' modules={modules} value={DOMPurify.sanitize(text)} onChange={handleTextChange}/> 
+                    </section>
+                    <br></br>
                     <br></br>
                     <br></br>
                     <input id='submit' type='submit' value={'Edit'} />
                     <br></br>
                     <br></br>
                 </form>
+                <br></br>
+                <div className='delete-button'>
+                    <button onClick={DeleteFromArray}>Delete</button>
+                </div>
             </div>
-        </div>
     );
 }
  

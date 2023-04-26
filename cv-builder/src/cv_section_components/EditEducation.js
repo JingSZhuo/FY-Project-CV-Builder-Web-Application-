@@ -3,7 +3,8 @@ import '../main.scss';
 import '../reset.css';
 
 /* REACT */
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 /* FIREBASE */
 import db from '../firebase';
@@ -18,6 +19,7 @@ const EditEducation = () => {
 
     /* passing state variable via Link */
     const location = useLocation();
+    const navigate = useNavigate();
 
     const [index] = useState(location.state.identifier);
     const [Education, setEducation] = useState([]);
@@ -77,36 +79,68 @@ const EditEducation = () => {
         alert(`Education ${index} updated`);
     }
 
+    async function DeleteFromArray(){
+        Education.splice(index, 1);
+        console.log("After", Education)
+        await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
+            Education
+        });
+        alert("Deleted");
+        navigate('/cv_template');
+    }
+
 
     return ( 
-        <div>
-            <h1>Edit</h1>
-            <p>{location.state?.identifier}</p>
-            <form onSubmit={handleSubmitEducation}>
-                <input id='institution' type='text' placeholder='school or university' name='institution'/>
+        <div className='main'> 
+            <nav className='navbar'>
+                <Link className='navbar-buttons' to={"/"}>Home</Link>
+            </nav>
+            <h1 className='form-component-subheader' style={{ marginTop: '20px', textAlign: 'center'}}>Edit Experience {location.state?.identifier}</h1>
+            <form onSubmit={handleSubmitEducation} className='cv-form' style={{width: '50%', margin: '50px auto 0 auto'}}>
+                <div className='field-div'>
+                    <label for={"institution"}>Institution</label>
+                    <input id='institution' type='text' placeholder='school or university' name='institution'/>
+                </div>
                 <br></br>
                 <br></br>
-                <input id='city' type='text' placeholder='city' name='city'/>
+                <div className='field-div'>
+                    <label for={"city"}>City</label>
+                    <input id='city' type='text' placeholder='city' name='city'/>
+                </div>
                 <br></br>
                 <br></br>
-                <input id='course' type='text' placeholder='course' name='course' />
+                <div className='field-div'>
+                    <label for={"course"}>Course</label>
+                    <input id='course' type='text' placeholder='course' name='course' />
+                </div>
                 <br></br>
                 <br></br>
-                <p>Start date</p>
-                <input id='startdate' type='date' name='startdate' />
+                <div className='field-div-dates'>
+                    <div>
+                        <label for={"startdate"}>Start Date</label>
+                        <input id='startdate' type='date' name='startdate' />
+                    </div>
+                    <div>
+                        <label for={"enddate"}>End Date</label>
+                        <input id='enddate' type='date' name='enddate' />
+                    </div>
+                </div>          
+                <br></br>
+                <br></br>      
+                <h3>Description</h3>
                 <br></br>
                 <br></br>
-                <p>End date</p>
-                <input id='enddate' type='date' name='enddate' />
-                <br></br>
-                <br></br>
-                <ReactQuill theme='snow' modules={modules} value={DOMPurify.sanitize(text)} onChange={handleTextChange} /> 
+                <section style={{backgroundColor: 'white', width:"100%"}}>
+                    <ReactQuill theme='snow' modules={modules} value={DOMPurify.sanitize(text)} onChange={handleTextChange}/> 
+                </section>
                 <br></br>
                 <br></br>
                 <input id='submit' type='submit' value={'Edit'} />
-                <br></br>
-                <br></br>
             </form>
+            <br></br>
+            <div className='delete-button'>
+                <button onClick={DeleteFromArray}>Delete</button>
+            </div>
         </div>
     );
 }
