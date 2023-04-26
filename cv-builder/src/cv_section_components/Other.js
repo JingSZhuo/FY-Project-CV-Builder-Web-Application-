@@ -52,23 +52,20 @@ function OtherForm () {
 
             <form onSubmit={handleSubmitFunction} className='cv-form'>
                 <h4>Add a extra section (optional)</h4>
-                <br></br>
+
                 <div className='field-div'>
                     <label for={"heading"}>Header Title</label>
                     <input id='heading' type='text' placeholder='Add a header'/>
                 </div>
-                <br></br>
-                <br></br>
+
                 <p>Editing this textbox will replace the old ones..</p>
                 <br></br>
-                <section style={{backgroundColor: 'white', width:"100%"}} data-testid="text-input">
+                <section style={{backgroundColor: 'white', marginBottom: '50px' ,width:"100%"}} data-testid="text-input">
                     <ReactQuill id='otherTextBox' theme='snow' modules={modules} value={DOMPurify.sanitize(text)} onChange={handleTextChange} />
                 </section>
-                <br></br>
-                <br></br>
+
                 <input id='submit' type='submit' value={'Add/Edit'} />
-                <br></br>
-                <br></br>
+
             </form>
         </div>
     )
@@ -95,14 +92,6 @@ const Other = () => {
         document.getElementById('otherTextBox').value = other;
     }
 
-    async function DeleteFromDB(){
-        await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
-            OtherTitle : deleteField(),
-            Other: deleteField(),
-        });
-        alert('deleted!');
-    }
-
     return ( 
         <div id='skills-form'>
             <br></br>
@@ -110,11 +99,28 @@ const Other = () => {
             <br></br>
             <h1>{header}</h1>
             <br></br>
-            <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(other)}}/>
-            <br></br>
-            <div className='delete-button'>
-                <button onClick={DeleteFromDB}>Delete</button>
+            <div className='edit-individual-component-div'>
+                <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(other)}}/>
             </div>
+            <br></br>
+            {other === undefined ? null: <DeleteComponent/> }
+        </div>
+    );
+}
+
+async function DeleteFromDB(){
+    await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
+        OtherTitle : deleteField(),
+        Other: deleteField(),
+    });
+    alert('deleted!');
+}
+
+
+const DeleteComponent = () => {
+    return(
+        <div className='delete-button'>
+            <button onClick={DeleteFromDB}>Delete</button>
         </div>
     );
 }

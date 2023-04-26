@@ -74,20 +74,17 @@ function AddEducation () {
                     <label for={"institution"} >Institution</label>
                     <input id='institution' type='text' placeholder='school or university' name='institution'/>
                 </div>
-                <br></br>
-                <br></br>
+
                 <div className='field-div'>
                     <label for={"city"} >City</label>
                     <input id='city' type='text' placeholder='city' name='city'/>
                 </div>
-                <br></br>
-                <br></br>
+
                 <div className='field-div'>
                     <label for={"course"}>Course</label>
                     <input id='course' type='text' placeholder='course' name='course' />
                 </div>
-                <br></br>
-                <br></br>
+
                 <div className='field-div-dates'>
                     <div>
                         <label for={"startdate"}>Start Date</label>
@@ -98,18 +95,15 @@ function AddEducation () {
                         <input id='enddate' type='date' name='enddate' />
                     </div>
                 </div>                
-                <br></br>
-                <br></br>
+
                 <h3>Description</h3>
                 <br></br>
-                <section style={{backgroundColor: 'white', width:"100%"}}>
+                <section style={{backgroundColor: 'white', marginBottom: '50px' ,width:"100%"}}>
                     <ReactQuill theme='snow' modules={modules} value={text} onChange={handleTextChange} /> 
                 </section>
-                <br></br>
-                <br></br>
+
                 <input id='submit' type={"submit"} value={'Add'} data-testid="submit-edu" />
-                <br></br>
-                <br></br>
+
             </form>
     )
 }

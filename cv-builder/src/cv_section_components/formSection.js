@@ -44,31 +44,35 @@ const ProfileSummary = () => {
             {/* EDUCATION */}
 
             { nextComponent === 1 ? <Education/> : null }
-            
+            <div className='back-next-option'>
             { nextComponent === 1 ? <button onClick={PreviousComponent} >Back</button> : null }
             { nextComponent === 1 ? <button onClick={NextComponent} >Next (Experience)</button> : null }
+            </div>
 
             {/* EXPERIENCE */}
 
             { nextComponent === 2 ? <Experience/> : null }
-
+            <div className='back-next-option'>
             { nextComponent === 2 ? <button onClick={PreviousComponent} >Back</button> : null }
             { nextComponent === 2 ? <button onClick={NextComponent} >Next (Skills)</button> : null }
+            </div>
+           
 
             {/* SKILLS */}
 
             { nextComponent === 3 ? <Skills/> : null }
-
+            <div className='back-next-option'>
             { nextComponent === 3 ? <button onClick={PreviousComponent} >Back</button> : null }
             { nextComponent === 3 ? <button onClick={NextComponent} >Next (Other)</button> : null }
-
+            </div>
             
             {/* OTHER SECTION */}
 
             { nextComponent === 4 ? <Other/> : null }
-
+            <div className='back-next-option'>
             { nextComponent >= 4 ? <button onClick={PreviousComponent} >Back</button> : null }
             { nextComponent === 4 ? <button onClick={() => { navigate('/preview-temaplate'); }}>Finish</button> : null }
+            </div>
         </div>
      );
 }

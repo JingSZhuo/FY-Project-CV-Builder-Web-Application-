@@ -155,9 +155,14 @@ div.form-section{
   margin-right: 10em;
   min-height: 80vh;
 
+  .back-next-option{
+    @include flexDisplayJustify(flex, row, space-between)
+  }
+
   button{
     @extend .button-css;
-    @include buttonWidthPaddgin(35%, 10px)
+    @include buttonWidthPaddgin(35%, 10px);
+    cursor: pointer;
   }
 }
 
@@ -196,11 +201,13 @@ div.form-section{
 }
 
 .cv-form .field-div-dates{
-  @include flexDisplayJustify(flex, row, space-between)
+  @include flexDisplayJustify(flex, row, space-between);
+  margin: 50px 0 50px 0;
 }
 
 .cv-form .field-div{ 
   @include flexDisplayJustify(flex, row, flex-start);
+  margin: 50px 0 50px 0;
 
   div{
     @include flexDisplayJustify(flex, column, flex-start);
@@ -256,7 +263,7 @@ div.form-section{
 }
 
 .delete-button{ 
-  @include flexDisplayJustify(flex, row, baseline);
+  @include flexDisplayJustify(flex, row, center);
   width: 50%;
   margin: 0 auto 20px auto;
 
