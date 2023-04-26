@@ -255,16 +255,16 @@ div.form-section{
   margin-bottom: 15px;
 }
 
-.delete-button{
+.delete-button{ 
   @include flexDisplayJustify(flex, row, baseline);
   width: 50%;
   margin: 0 auto 20px auto;
 
   button{
-    border: none;
-    text-decoration: underline;
-    background: none;
-    color: red;
+    border: none !important;
+    text-decoration: underline !important;
+    background: none !important;
+    color: red !important;
     cursor: pointer;
   }
 }

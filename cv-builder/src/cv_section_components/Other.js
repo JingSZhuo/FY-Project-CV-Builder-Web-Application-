@@ -12,7 +12,7 @@ import DOMPurify from 'dompurify';
 
 /* FIREBASE  */
 import db from '../firebase';
-import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
+import { deleteField, doc, onSnapshot, updateDoc } from 'firebase/firestore';
 
 
 function OtherForm () {
@@ -95,6 +95,14 @@ const Other = () => {
         document.getElementById('otherTextBox').value = other;
     }
 
+    async function DeleteFromDB(){
+        await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
+            OtherTitle : deleteField(),
+            Other: deleteField(),
+        });
+        alert('deleted!');
+    }
+
     return ( 
         <div id='skills-form'>
             <br></br>
@@ -103,6 +111,10 @@ const Other = () => {
             <h1>{header}</h1>
             <br></br>
             <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(other)}}/>
+            <br></br>
+            <div className='delete-button'>
+                <button onClick={DeleteFromDB}>Delete</button>
+            </div>
         </div>
     );
 }
