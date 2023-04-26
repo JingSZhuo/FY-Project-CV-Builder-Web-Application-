@@ -8,7 +8,7 @@ import React from 'react';
 /* FIREBASE */
 import db from '../firebase';
 import { deleteField, doc, updateDoc } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const EndSurvey = () => {
@@ -32,7 +32,7 @@ const EndSurvey = () => {
     return(
         <body className="main">
             <nav className='navbar'>
-
+                <Link className='navbar-buttons' to={"/"}>Home</Link>
             </nav>
 
 
@@ -68,7 +68,9 @@ const EndSurvey = () => {
                             <textarea id='textarea-user-opinion' rows={"10"} cols={"50"}></textarea>
                         </div>
                         <br></br>
-                        <input type={"submit"}/>
+                        <div>
+                            <input type={"submit"}/>
+                        </div>
                     </form>
                 </section>
             </section>

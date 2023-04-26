@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 /* REACT */
 import DOMPurify from 'dompurify';
 
-const ModernTemplateModel = () => {
+const ModernTemplateModel = (props) => {
 
     const [profile, setProfile] = useState([]);
     const [education, setEducation] = useState([]);
@@ -54,7 +54,7 @@ const ModernTemplateModel = () => {
         <div className='cv-preview' id='cv-preview'>
             <div className='template' id='template' >
                 <div className='flex-outer'>
-                    <div className='left-side' >
+                    <div className='left-side' style={{backgroundColor: `${props['colour']}`}} >
                         <h2 style={{fontSize: '1rem'}}>Profile</h2>
                         <p style={{fontSize: '0.7rem'}} >{profile['FName'] + " " + profile['LName']}</p>
                         <br></br>
@@ -69,7 +69,7 @@ const ModernTemplateModel = () => {
                             <div className='fontsize-test' dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(skills) }}/>
                         </div>
                     </div>
-                    <div className='right-side' >
+                    <div className='right-side' style={{backgroundColor: `${props['colour_2']}`}} >
                         <div>
                             <h2>Education</h2>
                             {

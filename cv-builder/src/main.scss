@@ -45,7 +45,7 @@ $text-color: black ;
   min-height: 90%;
   height: auto;
   padding: 0 5% 0 5%;
-  @include flexDisplayJustify(flex, row, flex-start)
+  @include flexDisplayJustify(flex, row, center)
 }
 
 /* NAVBAR */
@@ -166,6 +166,20 @@ div.form-section{
   }
 }
 
+.questionnaire-section > section > div{
+  width: 50%;
+  margin: auto;
+  @include flexDisplayJustify(flex, row , center);
+
+  button{
+    margin: 20px 50px 0 50px ;
+    @extend .button-css;
+    @include buttonWidthPaddgin(15%, 10px);
+    cursor: pointer;
+  }
+  
+}
+
 /* template_component -> Modern.js file*/
 
 .template{
@@ -233,7 +247,7 @@ div.form-section{
   @include flexDisplayJustify(flex, column, baseline)
 }
 
-.cv-form input[type="submit"]{
+.cv-form input[type="submit"], .main-body-template-page>form>div>input[type="submit"]{
   @extend .button-css;
   @include buttonWidthPaddgin(30%, 10px);
   cursor: pointer;
@@ -308,19 +322,43 @@ div.form-section{
     height: 100px;
     cursor: pointer;
   }
-  
+
+  div{
+    width: 100%;
+    @include flexDisplayJustify(flex, column, center);
+    align-items: center;
+
+    input{
+      border: none;
+      border-radius: 5px;
+    }
+  }
 } 
 
-/*SURVEY CSS*/
+/* END SURVEY CSS */
 
 .slider-question{
-  display: flex;
-  flex-direction: row;
+  @include flexDisplayJustify(flex , row, flex-start);
+  margin: 5px 0 20px 0;
+}
+
+input[type="range"]{
+  width: 100%;
+}
+.main-body-template-page>form>div{
+  @include flexDisplayJustify(flex, row, flex-end);
 }
 
 .textarea-custom{
-  display: flex;
-  flex-direction: column;
+  @include flexDisplayJustify(flex, column !important, flex-start); 
+}
+
+#textarea-user-opinion{
+  border: none;
+  border-radius: 10px;
+  margin-top: 15px;
+  resize: none;
+  width: 100% !important;
 }
 
 .fontsize-test {

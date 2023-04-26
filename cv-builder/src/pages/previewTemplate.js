@@ -1,4 +1,5 @@
 /* CSS FILES */ 
+import { useState } from 'react';
 import '../main.scss';
 import '../reset.css';
 
@@ -13,6 +14,17 @@ import { Link } from 'react-router-dom';
 //import "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"
 
 const PreviewTemplate = () => {
+
+    const [colour, setColour] = useState('#00ffff');
+    const [colour_2, setColour_2] = useState('#ffffff');
+
+    const ChangeColour = (event) => {
+        setColour(event.target.value);
+    };
+    const ChangeColour_2 = (event) => {
+        setColour_2(event.target.value);
+    };
+
 
     const pdfConverterSettings ={
         margin: 1,
@@ -56,8 +68,17 @@ const PreviewTemplate = () => {
                 <h1 className='header'>Preview</h1>
                 <br></br>
                 <section className='preview'>
-                    <ModernTemplateModel/>
+                    <ModernTemplateModel colour={colour} colour_2={colour_2}/>
                     <div className='cv-options'>
+                        <div>
+                            <label for={"left-colour"}>Change left side</label>
+                            <input id='left-colour' type='color' value={colour} onChange={ChangeColour}/>
+                        </div>
+                        <div>
+                            <label for={"right-colour"}>Change right side</label>
+                            <input id='right-colour' type='color' value={colour_2} onChange={ChangeColour_2}/>
+                        </div>
+                        
                         <button onClick={ConvertToPDF}>Export to PDF</button>
                         <Link to={'/surveyCV'}>Finish</Link>
                     </div>

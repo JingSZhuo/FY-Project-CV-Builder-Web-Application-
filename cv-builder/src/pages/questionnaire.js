@@ -1,5 +1,5 @@
 /* REACT IMPORTS */
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 /* CSS FILES */ 
 import '../main.scss';
@@ -30,7 +30,7 @@ const QuestionnairePage = () => {
     }
     
     return ( 
-        <div>
+        <div className='questionnaire-section'>
             <div className='header-position'>
                 <h2 className='header' >CV Assistant</h2>
             </div>
@@ -42,19 +42,21 @@ const QuestionnairePage = () => {
                 {
                     question === 1 ? <Q2/> : null
                 }
+                <div>
                 {
                     question >= 1 ? <button onClick={PreviousQuestion}>Previous</button> : null
                 }
                 {
                     question >= 0 && question < 1?  <button onClick={NextQuestion}>Next</button> : <button onClick={DirectToTemplate}>Done</button>
                 }
+                </div>
             </section>
             {/* comment out code below when finished */}
-            <div>
+            {/* <div>
                 <br></br>
                 <Link to="/preview-temaplate">Template Preview</Link>
                 <br></br>
-            </div>
+            </div> */}
         </div>
     );
 }
