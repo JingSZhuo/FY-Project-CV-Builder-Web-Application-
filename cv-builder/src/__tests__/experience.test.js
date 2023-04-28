@@ -4,20 +4,18 @@ import '@testing-library/jest-dom'
 import { AddExperience, Experience, generateKey } from "../cv_section_components/Experience";
 import { wait } from "@testing-library/user-event/dist/utils";
 
-describe('Experience Component renders correctly', () => {
+test('function take index as argument and returns index', () => {
+    const index = 0;
+    expect(generateKey(index)).toBe(index);
+});
 
-    test('function take index as argument and returns index', () => {
-        const index = 0;
-        expect(generateKey(index)).toBe(index);
-    });
-
-    test('Experience Component rendered properly', () => {
+describe('Experience Component - Rendering', () => {
+    test('Whole Experience Component renders', () => {
         render(<Experience/>);
-        })
-    test('AddExperience Component rendered properly', () => {
+    });
+    test('Whole AddExperience Component renderes', () => {
         render(<AddExperience/>);
-        })
-
+    });
     test('suggestions list id displayed', () => {
         render(<Experience/>);
         const listExperience = screen.queryByTestId('list');
@@ -49,4 +47,33 @@ describe('test the rendering of input fields', () => {
         const submit = screen.getByTestId('submit-input');
         expect(submit).toBeInTheDocument();
     })
+});
+
+describe('AddExperience Component - Attribute check', () => {
+
+    test('Field attributes check (type:text) [id, type, name]', () => {
+        render(<AddExperience/>);
+        const y = screen.getAllByTestId('text-input');
+        const z = screen.getAllByTestId('date-input');
+
+
+        expect(y[0]).toHaveAttribute('type', 'text');
+        expect(y[1]).toHaveAttribute('type', 'text');
+        expect(y[2]).toHaveAttribute('type', 'text');
+
+        expect(y[0]).toHaveAttribute('id', 'jobtitle');
+        expect(y[0]).toHaveAttribute('name', 'jobtitle');
+        expect(y[1]).toHaveAttribute('id', 'city');
+        expect(y[1]).toHaveAttribute('name', 'city')
+        expect(y[2]).toHaveAttribute('id', 'company');
+        expect(y[2]).toHaveAttribute('name', 'company');
+
+        expect(z[0]).toHaveAttribute('type', 'date');
+        expect(z[1]).toHaveAttribute('type', 'date');
+
+        expect(z[0]).toHaveAttribute('id', 'startdate');
+        expect(z[0]).toHaveAttribute('name', 'startdate');
+        expect(z[1]).toHaveAttribute('id', 'enddate');
+        expect(z[1]).toHaveAttribute('name', 'enddate');
+    });
 });

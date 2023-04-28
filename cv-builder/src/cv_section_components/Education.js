@@ -60,7 +60,7 @@ function AddEducation () {
                             Description: text,
                         }
                 ) 
-            });
+            }); 
             alert("Submitted");
         } catch (error) {
             alert(error)
@@ -71,39 +71,38 @@ function AddEducation () {
     return(
             <form onSubmit={handleSubmitEducation} className='cv-form'>
                 <div className='field-div'>
-                    <label for={"institution"} >Institution</label>
-                    <input id='institution' type='text' placeholder='school or university' name='institution'/>
+                    <label htmlFor={"institution"} >Institution</label>
+                    <input id='institution' type='text' placeholder='school or university' name='institution' data-testid="institution-field"/>
                 </div>
 
                 <div className='field-div'>
-                    <label for={"city"} >City</label>
-                    <input id='city' type='text' placeholder='city' name='city'/>
+                    <label htmlFor={"city"} >City</label>
+                    <input id='city' type='text' placeholder='city' name='city' data-testid="city-field"/>
                 </div>
 
                 <div className='field-div'>
-                    <label for={"course"}>Course</label>
-                    <input id='course' type='text' placeholder='course' name='course' />
+                    <label htmlFor={"course"}>Course</label>
+                    <input id='course' type='text' placeholder='course' name='course' data-testid="course-field"/>
                 </div>
 
                 <div className='field-div-dates'>
                     <div>
-                        <label for={"startdate"}>Start Date</label>
-                        <input id='startdate' type='date' name='startdate' />
+                        <label htmlFor={"startdate"}>Start Date</label>
+                        <input id='startdate' type='date' name='startdate' data-testid="startdate-field"/>
                     </div>
                     <div>
-                        <label for={"enddate"} >End Date</label>
-                        <input id='enddate' type='date' name='enddate' />
+                        <label htmlFor={"enddate"} >End Date</label>
+                        <input id='enddate' type='date' name='enddate' data-testid="enddate-field"/>
                     </div>
                 </div>                
 
                 <h3>Description</h3>
                 <br></br>
                 <section style={{backgroundColor: 'white', marginBottom: '50px' ,width:"100%"}}>
-                    <ReactQuill theme='snow' modules={modules} value={text} onChange={handleTextChange} /> 
+                    <ReactQuill theme='snow' modules={modules} value={text} onChange={handleTextChange} data-testid="text-quill-field" /> 
                 </section>
 
                 <input id='submit' type={"submit"} value={'Add'} data-testid="submit-edu" />
-
             </form>
     )
 }
@@ -131,7 +130,7 @@ const Education = () => {
     }
 
     return ( 
-        <div data-testid="list-edu">
+        <div>
             <h2 className='form-component-subheader' >Education</h2>
             <br></br>
             <AddEducation/>
@@ -140,7 +139,7 @@ const Education = () => {
                 {
                     education?.map((data, index) => {
                         return(
-                            <div key={generateKey(index)} className='edit-individual-component-div'>
+                            <div key={generateKey(index)} className='edit-individual-component-div' data-testid="list-edu">
                                 <h6>{data['Institution'] + " - " + data['Course'] }</h6>
                                 <p> {data['StartDate'] + " - " + data['EndDate']} </p>
                                 <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(data['Description']) }}/>
@@ -154,4 +153,4 @@ const Education = () => {
     );
 }
 
-export { AddEducation, Education, generateKey };
+export { AddEducation, Education, generateKey, ReactQuill };
