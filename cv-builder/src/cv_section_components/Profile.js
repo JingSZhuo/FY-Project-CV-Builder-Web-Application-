@@ -73,7 +73,10 @@ const Profile = () => {
 
     return ( 
             <form onSubmit={handleSubmit} className='cv-form'>
-                <h2 className='form-component-subheader' >Profile Summary</h2>
+                {/* <div id='profile-header-div'>
+                    <h2  >Profile Summary</h2>
+                </div> */}
+                <h2 className='form-component-subheader'  >Profile Summary</h2>
 
                 <div className='field-div'>
                     <label for={"fName"}>First Name</label>

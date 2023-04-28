@@ -17,6 +17,18 @@ import ReactQuill from 'react-quill';
 function AddExperience () {
 
     const [text, setText] = useState('');
+    const [startDate, setStartDate] = useState('');
+
+    const setStartDateField = (event) => {
+        setStartDate(event.target.value);
+    };
+    const setEndDateField = (event) => {
+        if(startDate > event.target.value){
+            event.target.value = startDate;
+            alert('End date cannot be before the start date');
+            return false;
+        }
+    };
 
     const modules = {
         toolbar: [
@@ -57,7 +69,7 @@ function AddExperience () {
                         }
                 ) 
             });
-            alert("Added!");
+            alert("Added Experience!");
         } catch (error) {
             alert(error);
         }
@@ -85,11 +97,11 @@ function AddExperience () {
                 <div className='field-div-dates'>
                     <div>
                         <label for={"startdate"}>Start Date</label>
-                        <input id='startdate' type='date' name='startdate' data-testid="date-input"/>
+                        <input id='startdate' type='date' name='startdate' onChange={setStartDateField} data-testid="date-input"/>
                     </div>
                     <div>
                         <label for={"enddate"}>End Date</label>
-                        <input id='enddate' type='date' name='enddate' data-testid="date-input"/>
+                        <input id='enddate' type='date' name='enddate' onChange={setEndDateField} data-testid="date-input"/>
                     </div>
                 </div>
 

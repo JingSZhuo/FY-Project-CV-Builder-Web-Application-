@@ -29,11 +29,10 @@ function GetAnswerForQ2 () {                                               //Get
 
 const QuestionTwo = () => {
     return ( 
-
         <section className='quiz-component-center'>
             <br></br>
             <div className='questionnaire-header'>
-                <h3>Which one best describes you experience level for this sector?</h3>
+                <h3 className='questionnaire-h3'>Which one best describes you experience level for this sector?</h3>
             </div>
             <br></br>
             <form onSubmit={(e) => {e.preventDefault()}} id='question_two' className='form-custom'>

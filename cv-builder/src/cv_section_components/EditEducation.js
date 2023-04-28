@@ -85,7 +85,7 @@ const EditEducation = () => {
         await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
             Education
         });
-        alert("Deleted");
+        alert("Deleted Education!");
         navigate('/cv_template');
     }
 

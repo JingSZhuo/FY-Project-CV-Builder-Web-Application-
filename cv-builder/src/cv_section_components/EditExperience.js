@@ -75,7 +75,7 @@ const EditExperience = () => {
         await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
             Experience
         });
-        alert("Edited!")
+        alert(`Updated Experience ${index}!`);
     }
 
     async function DeleteFromArray(){
@@ -84,7 +84,7 @@ const EditExperience = () => {
         await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
             Experience
         });
-        alert("Deleted");
+        alert("Deleted Experience");
         navigate('/cv_template');
     }
 

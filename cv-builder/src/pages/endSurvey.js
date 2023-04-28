@@ -40,7 +40,7 @@ const EndSurvey = () => {
                 <h1 className='header'>Survey Page</h1>
                             
                 <section className='main-body-template-page'>
-                    <form onSubmit={SubmitSurveyAndWipeDate}>
+                    <form onSubmit={SubmitSurveyAndWipeDate} id='end-survey-form'>
                         <h2>Survey</h2>
                         <br></br>
                         <p>All submissions will be anonymous</p>

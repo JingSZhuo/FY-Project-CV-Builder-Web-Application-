@@ -39,6 +39,7 @@ function OtherForm () {
             OtherTitle : otherHeaderTitle,
             Other: text
         });
+        alert("Added Custom Section!");
     }
 
     return(
@@ -58,7 +59,7 @@ function OtherForm () {
                     <input id='heading' type='text' placeholder='Add a header'/>
                 </div>
 
-                <p>Editing this textbox will replace the old ones..</p>
+                <p style={{fontSize: '0.7em'}}>Editing this textbox will replace the old ones..</p>
                 <br></br>
                 <section style={{backgroundColor: 'white', marginBottom: '50px' ,width:"100%"}} data-testid="text-input">
                     <ReactQuill id='otherTextBox' theme='snow' modules={modules} value={DOMPurify.sanitize(text)} onChange={handleTextChange} />
@@ -113,7 +114,7 @@ async function DeleteFromDB(){
         OtherTitle : deleteField(),
         Other: deleteField(),
     });
-    alert('deleted!');
+    alert('Deleted Custom Section!');
 }
 
 

@@ -20,11 +20,10 @@ const QuestionOne = () => {
     }
 
     return ( 
-
         <section className='quiz-component-center'>
             <br></br>
             <div className='questionnaire-header'>
-                <h3>Which sector do you want to create a CV for?</h3>
+                <h3 className='questionnaire-h3'>Which sector do you want to create a CV for?</h3>
             </div>
             <br></br>
             <div className='custom-select'>

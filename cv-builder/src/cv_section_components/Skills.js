@@ -37,6 +37,7 @@ function SkillsForm () {
         await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
             Skills: text
         });
+        alert("Added Skills!");
     }
 
     return(

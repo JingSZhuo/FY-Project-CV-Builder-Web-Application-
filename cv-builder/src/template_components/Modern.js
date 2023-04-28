@@ -60,7 +60,7 @@ const ModernTemplateModel = (props) => {
                         <br></br>
                         <p style={{fontSize: '0.5rem'}} >{profile['Email']}</p>
                         <br></br>
-                        <p style={{fontSize: '0.7rem'}}>{profile['Contact']}</p>
+                        <p style={{fontSize: '0.5rem'}}>{profile['Contact']}</p>
 
                         <br></br>
                         <br></br>

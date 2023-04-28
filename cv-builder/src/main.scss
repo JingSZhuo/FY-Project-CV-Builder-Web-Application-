@@ -31,6 +31,14 @@ $text-color: black ;
   padding: $padding;
 }
 
+button, input[type="submit"]{
+  animation: animate-button 1s ease-in;
+}
+@keyframes animate-button{
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
 /* BASEPAGE - baseTemplage.js*/
 
 .main {
@@ -66,18 +74,30 @@ nav.navbar {
   cursor: pointer;
 }
 
+/* MAINPAGE - main.js*/
 .intro{
+  animation: animate-intro 1s ease-in;
   padding: 20%;
+  position: relative;
   h1, p {
     text-align: center;
   }
 }
+@keyframes animate-intro {
+  0% {opacity: 0; top: -60px;}
+  100% {opacity: 1; top: 0px;}
+}
 
 h1.header, h2.header{
+  animation: animate-h1h2header 1s ease-in-out;
   font-size: 4em;
   text-shadow: 2px 4px 5px #565555;
   text-align: center;
 } 
+@keyframes animate-h1h2header {
+  0% {opacity: 0; }
+  100% {opacity: 1;}
+}
 
 p.subheader{
   font-size: 1.5em;
@@ -92,12 +112,28 @@ p.subheader{
 /* quiz_1.js file*/
 
 .questionnaire-header{
+  animation: animate-quetionnaire-header 0.5s ease-in;
   background-color: rgba(194, 255, 114, 0.341);
   padding: 2%;
   text-align: center;
   font-size: 1.5em;
-  width: 96%
+  width: 96%;
+  height: 30px;
+}
+@keyframes animate-quetionnaire-header {
+  0% {width: 0;}
+  100% {width: 96%;}
+}
 
+.questionnaire-h3{
+  animation: animate-questionnaire-h2 1s ease-in; 
+  max-height: 100px;
+  height: auto;
+}
+@keyframes animate-questionnaire-h2{
+  0% {opacity: 0; max-height: 0;}
+  60% {opacity: 0; }
+  100% {opacity: 1; max-height: 30px;}
 }
 
 div.custom-select{
@@ -200,18 +236,45 @@ div.form-section{
   width: 35%;
   background-color: aqua;
   color: $text-color;
+  padding: 10px 0 0 10px;
 }
 .right-side{
   width: 65%;
   background-color: white;
   color: $text-color;
+  padding: 10px 10px 0 10px;
 }
 
 /*PROFILE CSS*/
 
-/*FORM SHARED CSS - Profile.js, education.js*/
-.form-component-subheader{
+/*FORM SHARED CSS - Profile.js, education.js...*/
+.field-div,.field-div-dates{
+  animation: animate-field-div 1s ease-in-out;
+  position: relative;
+}
+@keyframes animate-field-div{
+  0% {opacity: 0; top: -50px;}
+  100% {opacity: 1; top: 0;}
+}
+
+#profile-header-div{
   font-size: 1.5em;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.form-component-subheader{
+  animation: animate-form-component-subheader 1.6s ease; 
+  font-size: 1.5em;
+  overflow: hidden;
+  width: 100%;
+  word-wrap: normal;
+  white-space: nowrap;
+}
+@keyframes animate-form-component-subheader{
+  0% {width: 0%}
+  100% {width: 100%}
 }
 
 .cv-form .field-div-dates{
@@ -244,7 +307,13 @@ div.form-section{
 }
 
 .cv-form section{
+  animation: animate-quill 1s ease-in;
   @include flexDisplayJustify(flex, column, baseline)
+}
+
+@keyframes animate-quill {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }
 
 .cv-form input[type="submit"], .main-body-template-page>form>div>input[type="submit"]{
@@ -258,7 +327,7 @@ div.form-section{
   padding: 3%;
   margin-bottom: 15px;
 
-  p, p + a{
+  p, p + a, p + div + a{
     font-size: 0.7em;
   }
 
@@ -299,6 +368,15 @@ div.form-section{
 
 
 /*PREVIEW ( FINAL CV COMPONENT ) PAGE CSS - previewTemplate.js*/
+
+.cv-preview{
+  position: relative;
+  animation: animate-cv-preview 1s ease-in-out;
+}
+@keyframes animate-cv-preview{
+  0% {opacity: 0; left: -50px;}
+  100% {opacity: 1; left: 0;}
+}
 
 .preview{
   display: flex;
@@ -364,4 +442,14 @@ input[type="range"]{
 .fontsize-test {
   word-wrap: break-word;
   font-size: 0.6rem;
+}
+
+#end-survey-form{
+  position: relative;
+  margin-top: 20px;
+  animation: animate-end-survey-form 1s ease-in;
+}
+@keyframes animate-end-survey-form {
+  0% {opacity: 0; top: -60px; }
+  100% {opacity: 1; top: 0;}
 }

@@ -20,6 +20,18 @@ import DOMPurify from 'dompurify';
 function AddEducation () {
 
     const [text, setText] = useState('');
+    const [startDate, setStartDate] = useState('');
+
+    const setStartDateField = (event) => {
+        setStartDate(event.target.value);
+    };
+    const setEndDateField = (event) => {
+        if(startDate > event.target.value){
+            event.target.value = startDate;
+            alert('End date cannot be before the start date');
+            return false;
+        }
+    };
 
     const modules = {
         toolbar: [
@@ -61,7 +73,7 @@ function AddEducation () {
                         }
                 ) 
             }); 
-            alert("Submitted");
+            alert("Added Education!");
         } catch (error) {
             alert(error)
         }
@@ -88,11 +100,11 @@ function AddEducation () {
                 <div className='field-div-dates'>
                     <div>
                         <label htmlFor={"startdate"}>Start Date</label>
-                        <input id='startdate' type='date' name='startdate' data-testid="startdate-field"/>
+                        <input id='startdate' type='date' name='startdate' onChange={setStartDateField} data-testid="startdate-field"/>
                     </div>
                     <div>
                         <label htmlFor={"enddate"} >End Date</label>
-                        <input id='enddate' type='date' name='enddate' data-testid="enddate-field"/>
+                        <input id='enddate' type='date' name='enddate' onChange={setEndDateField} data-testid="enddate-field"/>
                     </div>
                 </div>                
 
