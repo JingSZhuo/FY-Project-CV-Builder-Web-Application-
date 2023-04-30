@@ -242,7 +242,7 @@ div.form-section{
   width: 65%;
   background-color: white;
   color: $text-color;
-  padding: 10px 10px 0 10px;
+  padding: 10px
 }
 
 /*PROFILE CSS*/
@@ -276,6 +276,33 @@ div.form-section{
   0% {width: 0%}
   100% {width: 100%}
 }
+
+.cv-form{
+  position: relative;
+}
+
+#helpbox-education{
+  position: absolute;
+  top: 320px;
+  right: -400px;
+  width: 350px;
+  height: auto;
+  background-color: rgba(15, 140, 250, 0.7) ;
+  padding: 10px;
+  z-index: 1;
+  font-size: 9px;
+  color: white;
+}
+#helpbox-education p{
+  font-size: 8px;
+  color: white;
+}
+#helpbox-education span{
+  position: relative;
+  left: 340px;
+  cursor: pointer;
+}
+
 
 .cv-form .field-div-dates{
   @include flexDisplayJustify(flex, row, space-between);
@@ -452,4 +479,88 @@ input[type="range"]{
 @keyframes animate-end-survey-form {
   0% {opacity: 0; top: -60px; }
   100% {opacity: 1; top: 0;}
+}
+
+
+
+
+//*********************************** MEDIA QUERY **********************************//
+/** TABLET 768PX AND SMALLER **/
+@media screen and (max-width: 768px){
+
+  /* Questionnaire section */
+  h2.header{
+    font-size: 2em;
+  }
+  .questionnaire-header{
+    font-size: 0.9em;
+    height: 23px;
+  }
+  .questionnaire-section > section > div{
+    width: 100%;
+  }
+  .questionnaire-section > section > div button{
+    width: auto;
+  }
+
+  div.form-section{
+    width: 100%;
+    margin-right: 0.5em;
+  }
+}
+
+/** SMARTPHONE 425PX AND SMALLER **/
+@media screen and (max-width: 667px){
+
+  p.subheader{
+    margin-top: 5px;
+  }
+
+  /* Questionnaire section */
+  h1.header, h2.header{
+    font-size: 2em;
+  }
+  .questionnaire-header{
+    font-size: 0.8em;
+    height: 25px;
+  }
+  .questionnaire-section > section > div{
+    width: 100%;
+  }
+  .questionnaire-section > section > div button{
+    width: auto;
+  }
+
+  /* CV Form section */
+  .main-body-template-page{
+    flex-direction: column;
+  }
+  div.form-section{
+    width: 100%;
+    margin-right: 0;
+  }
+  #helpbox-education{
+    top: 420px;
+    right: 0px;
+    width: 94%;
+  }
+  .back-next-option{
+    margin-bottom: 5px;
+  }
+
+  /* Edit section */
+  form.cv-form{
+    width: 90% !important;
+    margin: auto;
+  }
+
+  /* Preview section */
+  .preview{
+    flex-direction: column;
+    align-items: center;
+  }
+  .cv-options{
+    flex-direction: row;
+    width: auto;
+  }
 }

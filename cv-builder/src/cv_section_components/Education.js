@@ -12,8 +12,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 /* NPM PACKAGES */
-import ReactQuill from 'react-quill';
-import DOMPurify from 'dompurify';
+import ReactQuill from 'react-quill';  //JavaScript Library downloaded from https://quilljs.com/
+import DOMPurify from 'dompurify';  //JavaScript Library downloaded from https://www.npmjs.com/package/dompurify 
 
 //* Add Education to Database */
 
@@ -115,8 +115,25 @@ function AddEducation () {
                 </section>
 
                 <input id='submit' type={"submit"} value={'Add'} data-testid="submit-edu" />
+                <div id='helpbox-education'>
+                    <span onClick={close}>X</span>
+                    <p>Some suggestions for Education:</p>
+                    <div>
+                        <ul>
+                            <li>Gained proficiecy in [..programming langauges: C#, Java, Python, C++]</li>
+                            <li>Treasurer for [...Society Name...], increased membership sales by 10% and saved 50% in costs</li>
+                            <li>Achieved 1st class in [...subject...], with expertise in [...technical skill...]</li>
+                            <li>Team leader for netball team representing [...university team name...]</li>
+                        </ul>
+                    </div>
+                </div>
             </form>
     )
+}
+
+function close(){
+    console.log('closed');
+    document.getElementById('helpbox-education').style.display = 'none';
 }
 
 const generateKey = (index) => {

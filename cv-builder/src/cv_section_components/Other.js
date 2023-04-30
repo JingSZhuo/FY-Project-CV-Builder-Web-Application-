@@ -7,8 +7,8 @@ import 'react-quill/dist/quill.snow.css';
 /* REACT */
 
 import { useEffect, useState } from 'react';
-import ReactQuill from 'react-quill';
-import DOMPurify from 'dompurify';
+import ReactQuill from 'react-quill';  //JavaScript Library downloaded from https://quilljs.com/
+import DOMPurify from 'dompurify';  //JavaScript Library downloaded from https://www.npmjs.com/package/dompurify 
 
 /* FIREBASE  */
 import db from '../firebase';

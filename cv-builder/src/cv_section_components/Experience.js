@@ -11,8 +11,8 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 /* NPM PACKAGES */
-import DOMPurify from 'dompurify';
-import ReactQuill from 'react-quill';
+import DOMPurify from 'dompurify';  //JavaScript Library downloaded from https://www.npmjs.com/package/dompurify 
+import ReactQuill from 'react-quill';  //JavaScript Library downloaded from https://quilljs.com/
 
 function AddExperience () {
 
