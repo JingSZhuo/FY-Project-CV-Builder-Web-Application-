@@ -43,7 +43,7 @@ const EndSurvey = () => {
                     <form onSubmit={SubmitSurveyAndWipeDate} id='end-survey-form'>
                         <h2>Survey</h2>
                         <br></br>
-                        <p>All submissions will be anonymous</p>
+                        <p>Submission is entirely optional - All submissions will be anonymous</p>
                         <br></br>
                         <label for="q1-survey">How easy is it to use the CV builder?</label>
                         <br></br>
@@ -69,7 +69,7 @@ const EndSurvey = () => {
                         </div>
                         <br></br>
                         <div>
-                            <input type={"submit"}/>
+                            <input type={"submit"} value={"Finish"}/>
                         </div>
                     </form>
                 </section>
