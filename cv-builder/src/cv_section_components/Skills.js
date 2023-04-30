@@ -12,7 +12,7 @@ import DOMPurify from 'dompurify';  //JavaScript Library downloaded from https:/
 
 /* FIREBASE  */
 import db from '../firebase';
-import { doc, onSnapshot, updateDoc } from 'firebase/firestore';
+import { doc, onSnapshot, updateDoc, deleteField } from 'firebase/firestore';
 
 
 function SkillsForm () {
@@ -52,7 +52,7 @@ function SkillsForm () {
             <form onSubmit={handleSubmitFunction} className='cv-form'>
                 <h2>Add some skills to highlight</h2>
                 <br></br>
-                <p style={{fontSize: '0.7em'}}>Editing this textbox will replace the old ones..</p>
+                <p style={{fontSize: '0.7em'}}>Editing this textbox will replace the old ones, including delete!</p>
                 <br></br>
                 <section style={{backgroundColor: 'white', width:"100%"}} data-testid="text-input">
                     <ReactQuill theme='snow' modules={modules} value={text} onChange={handleTextChange} />
@@ -94,8 +94,27 @@ const Skills = () => {
             <div className='edit-individual-component-div'>
                 <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(skill)}}/>
             </div>
+            {skill === undefined ? null: <DeleteComponent/> }
         </div>
     );
 }
+
+
+async function DeleteFromDB(){
+    await updateDoc(doc(db, "UserAuthExample", "DocumentExample(useAuthID?)"), { 
+        Skills : deleteField(),
+    });
+    alert('Deleted Skills Section!');
+}
+
+
+const DeleteComponent = () => {
+    return(
+        <div className='delete-button'>
+            <button onClick={DeleteFromDB}>Delete</button>
+        </div>
+    );
+}
+ 
  
 export default Skills;

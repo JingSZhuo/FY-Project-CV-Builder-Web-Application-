@@ -25,6 +25,18 @@ const EditExperience = () => {
     const [index] = useState(location.state.identifier);
     const [Experience, setExperience] = useState([]);
     const [text, setText] = useState('');
+    const [startDate, setStartDate] = useState('');
+
+    const setStartDateField = (event) => {
+        setStartDate(event.target.value);
+    };
+    const setEndDateField = (event) => {
+        if(startDate > event.target.value){
+            event.target.value = startDate;
+            alert('End date cannot be before the start date');
+            return false;
+        }
+    };
 
     useEffect(() => {
         ReadFromDB();
@@ -76,6 +88,7 @@ const EditExperience = () => {
             Experience
         });
         alert(`Updated Experience ${index}!`);
+        navigate('/cv_template');
     }
 
     async function DeleteFromArray(){
@@ -113,11 +126,11 @@ const EditExperience = () => {
                     <div className='field-div-dates'>
                         <div>
                             <label for={"startdate"}>Start Date</label>
-                            <input id='startdate' type='date' name='startdate' />
+                            <input id='startdate' type='date' name='startdate' onChange={setStartDateField} />
                         </div>
                         <div>
                             <label for={"enddate"}>End Date</label>
-                            <input id='enddate' type='date' name='enddate' />
+                            <input id='enddate' type='date' name='enddate' onChange={setEndDateField}/>
                         </div>
                     </div>
 

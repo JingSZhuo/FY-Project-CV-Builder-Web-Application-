@@ -24,6 +24,18 @@ const EditEducation = () => {
     const [index] = useState(location.state.identifier);
     const [Education, setEducation] = useState([]);
     const [text, setText] = useState('');
+    const [startDate, setStartDate] = useState('');
+
+    const setStartDateField = (event) => {
+        setStartDate(event.target.value);
+    };
+    const setEndDateField = (event) => {
+        if(startDate > event.target.value){
+            event.target.value = startDate;
+            alert('End date cannot be before the start date');
+            return false;
+        }
+    };
 
     /* Load Data once */
     useEffect(() => {
@@ -77,6 +89,7 @@ const EditEducation = () => {
             Education
         });
         alert(`Education ${index} updated`);
+        navigate('/cv_template');
     }
 
     async function DeleteFromArray(){
@@ -115,11 +128,11 @@ const EditEducation = () => {
                 <div className='field-div-dates'>
                     <div>
                         <label for={"startdate"}>Start Date</label>
-                        <input id='startdate' type='date' name='startdate' />
+                        <input id='startdate' type='date' name='startdate'  onChange={setStartDateField} />
                     </div>
                     <div>
                         <label for={"enddate"}>End Date</label>
-                        <input id='enddate' type='date' name='enddate' />
+                        <input id='enddate' type='date' name='enddate'  onChange={setEndDateField} />
                     </div>
                 </div>          
     
